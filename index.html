@@ -1,0 +1,571 @@
+<!--
+Country J - Official Website
+===========================
+
+QUICK START:
+1. Open this file (index.html) directly in your browser to view the site locally
+2. All files are static and ready to deploy
+
+DEPLOYMENT TO GITHUB PAGES:
+1. Create a new GitHub repository
+2. Upload all files from this folder to the repository
+3. Go to repository Settings > Pages
+4. Set Source to "Deploy from a branch" and select "main" branch
+5. The site will be live at https://yourusername.github.io/repository-name/
+
+DOMAIN CHANGE:
+- Update the canonical URLs in all HTML files from https://countryjmusic.com/ to your actual domain
+- Update social media links and any hardcoded URLs as needed
+- For custom domain: Add a CNAME file to the repository root with your domain name
+
+CUSTOMIZATION NOTES:
+- Images have been added to assets/media/ folder and integrated throughout the site
+- Update contact information in relevant pages
+- Modify content while maintaining the Buffalo aesthetic
+- Test all forms (currently show success messages but don't send real emails)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country J - Authentic Country Music from Buffalo, New York | Official Website</title>
+    <meta name="description" content="Experience the raw power of Country J, Buffalo's rising star. Listen to latest releases, catch live shows, and feel the authentic country music that hits home.">
+    <meta name="keywords" content="Country J, country music, Buffalo, New York, country artist, live music, country songs, honky tonk">
+    <meta name="author" content="Country J">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://countryjmusic.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://countryjmusic.com/">
+    <meta property="og:title" content="Country J - Authentic Country Music from Buffalo, New York">
+    <meta property="og:description" content="Experience the raw power of Country J, Buffalo's rising star. Listen to latest releases, catch live shows, and feel the authentic country music that hits home.">
+    <meta property="og:image" content="https://countryjmusic.com/assets/img/og-image.jpg">
+    <meta property="og:site_name" content="Country J Official">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://countryjmusic.com/">
+    <meta name="twitter:title" content="Country J - Authentic Country Music from Buffalo, New York">
+    <meta name="twitter:description" content="Experience the raw power of Country J, Buffalo's rising star. Listen to latest releases, catch live shows, and feel the authentic country music that hits home.">
+    <meta name="twitter:image" content="https://countryjmusic.com/assets/img/twitter-card.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/styles.css" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "Country J",
+        "description": "Authentic country music artist from Buffalo, New York delivering raw, heartfelt songs that resonate with the soul of country music.",
+        "genre": ["Country", "Honky Tonk", "Americana"],
+        "foundingDate": "2020",
+        "sameAs": [
+            "https://www.instagram.com/countryj",
+            "https://www.tiktok.com/@countryj",
+            "https://www.youtube.com/countryj",
+            "https://open.spotify.com/artist/countryj",
+            "https://music.apple.com/artist/countryj",
+            "https://www.facebook.com/countryj"
+        ],
+        "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Country Music Artist",
+            "occupationLocation": {
+                "@type": "City",
+                "name": "Buffalo",
+                "addressRegion": "NY",
+                "addressCountry": "US"
+            }
+        },
+        "member": {
+            "@type": "Person",
+            "name": "Country J",
+            "jobTitle": "Lead Singer, Songwriter, Guitarist"
+        },
+        "album": [
+            {
+                "@type": "MusicAlbum",
+                "name": "Honky Tonk Heart",
+                "datePublished": "2024",
+                "numTracks": "10"
+            },
+            {
+                "@type": "MusicAlbum",
+                "name": "Dirt Road Dreams",
+                "datePublished": "2023",
+                "numTracks": "12"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Country J Home">
+                Country J
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="music.html">Music</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tour.html">Tour</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media.html">Media</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bookings.html">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="press.html">Press</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <a href="bookings.html" class="btn btn-book-now ms-3">Book Country J</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Divider -->
+    <div class="page-divider"></div>
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider" id="main-content">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Live Performances Slide -->
+                <div class="carousel-item active">
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(15, 15, 35, 0.8), rgba(45, 52, 54, 0.9)), url('assets/media/hero-country-j-live.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center min-vh-100">
+                                <div class="col-lg-8">
+                                    <h1 class="display-1 fw-bold mb-4">
+                                        Experience Live.<br>
+                                        <span class="text-western-accent">Feel the Energy.</span>
+                                    </h1>
+                                    <p class="lead mb-5 fs-4">
+                                        Catch Country J live on stage - from intimate honky-tonk venues to major festival performances. Feel the raw energy of authentic country music.
+                                    </p>
+                                    <div class="d-flex flex-column flex-sm-row gap-3">
+                                        <a href="tour.html" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-calendar-event me-2"></i>Upcoming Dates
+                                        </a>
+                                        <a href="bookings.html" class="btn btn-outline-light btn-lg px-5 py-3">
+                                            <i class="bi bi-ticket-perforated me-2"></i>Get Tickets
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music & Albums Slide -->
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(15, 15, 35, 0.8), rgba(45, 52, 54, 0.9)), url('assets/media/hero-country-j-music.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center min-vh-100">
+                                <div class="col-lg-8">
+                                    <h1 class="display-1 fw-bold mb-4">
+                                        Raw Country.<br>
+                                        <span class="text-western-accent">Real Heart.</span>
+                                    </h1>
+                                    <p class="lead mb-5 fs-4">
+                                        Buffalo's authentic voice bringing you honky-tonk anthems that hit home. Stream the latest releases and discover Country J's complete discography.
+                                    </p>
+                                    <div class="d-flex flex-column flex-sm-row gap-3">
+                                        <a href="music.html" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-play-circle-fill me-2"></i>Listen Now
+                                        </a>
+                                        <a href="#latest-release" class="btn btn-outline-light btn-lg px-5 py-3">
+                                            <i class="bi bi-music-note-list me-2"></i>Latest Release
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour & Booking Slide -->
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(15, 15, 35, 0.8), rgba(45, 52, 54, 0.9)), url('assets/media/hero-country-j-tour.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center min-vh-100">
+                                <div class="col-lg-8">
+                                    <h1 class="display-1 fw-bold mb-4">
+                                        Hit the Road.<br>
+                                        <span class="text-western-accent">Book Country J.</span>
+                                    </h1>
+                                    <p class="lead mb-5 fs-4">
+                                        From private events to major festivals, bring Country J's authentic country sound to your audience. Professional performances for every occasion.
+                                    </p>
+                                    <div class="d-flex flex-column flex-sm-row gap-3">
+                                        <a href="bookings.html" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-calendar-event me-2"></i>Book Now
+                                        </a>
+                                        <a href="tour.html" class="btn btn-outline-light btn-lg px-5 py-3">
+                                            <i class="bi bi-geo-alt me-2"></i>Tour Schedule
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Live slide"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Music slide"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Tour slide"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Release Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="release-card position-relative">
+                        <img src="assets/media/hero-country-j-music.jpg" alt="Honky Tonk Heart - Latest Album by Country J" class="img-fluid rounded" width="400" height="400" loading="lazy">
+                        <div class="release-overlay p-4">
+                            <h3 class="h2 mb-3">Honky Tonk Heart</h3>
+                            <p class="mb-4">The latest collection of raw, heartfelt country anthems that capture the essence of the American dream and the pain of love lost.</p>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <a href="#" class="streaming-btn" aria-label="Listen on Spotify">
+                                    <i class="bi bi-spotify" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" class="streaming-btn" aria-label="Listen on Apple Music">
+                                    <i class="bi bi-apple" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" class="streaming-btn" aria-label="Listen on YouTube Music">
+                                    <i class="bi bi-youtube" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" class="streaming-btn" aria-label="Listen on Amazon Music">
+                                    <i class="bi bi-amazon" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Latest Release</h2>
+                    <p class="lead mb-4">
+                        "Honky Tonk Heart" marks a new chapter in Country J's journey, featuring 10 tracks that blend traditional country roots with modern storytelling.
+                    </p>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 mb-1 text-western-gold">#1</div>
+                                <small class="text-western-tan">Country Digital Sales</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 mb-1 text-western-gold">2M+</div>
+                                <small class="text-western-tan">Streams This Month</small>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="music.html" class="btn btn-primary btn-lg">
+                        <i class="bi bi-music-note-list me-2"></i>Explore Full Discography
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Dates Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Upcoming Dates</h2>
+                <p class="lead text-western-tan">Catch Country J live - from intimate honky-tonks to major festivals</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="tour-item" data-date="2025-03-15">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="tour-date">Mar 15, 2025</div>
+                                <div class="tour-venue">The Bluebird Café</div>
+                                <div class="tour-location">Buffalo, NY</div>
+                            </div>
+                            <a href="bookings.html" class="btn btn-outline-primary btn-sm">Tickets</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour-item" data-date="2025-04-22">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="tour-date">Apr 22, 2025</div>
+                                <div class="tour-venue">Austin City Limits</div>
+                                <div class="tour-location">Austin, TX</div>
+                            </div>
+                            <a href="bookings.html" class="btn btn-outline-primary btn-sm">Tickets</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour-item" data-date="2025-05-10">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="tour-date">May 10, 2025</div>
+                                <div class="tour-venue">Red Rocks Amphitheatre</div>
+                                <div class="tour-location">Morrison, CO</div>
+                            </div>
+                            <a href="bookings.html" class="btn btn-outline-primary btn-sm">Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="tour.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-calendar-event me-2"></i>View Full Tour Schedule
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured In Section -->
+    <section class="section section-accent">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>As Featured In</h2>
+                <p class="text-western-tan">Country J has been honored to appear in these prestigious publications and media outlets</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="text-center">
+                        <img src="assets/img/press-rolling-stone.jpg" alt="Rolling Stone Magazine" class="img-fluid mb-3" width="120" height="60" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="text-center">
+                        <img src="assets/img/press-billboard.jpg" alt="Billboard Magazine" class="img-fluid mb-3" width="120" height="60" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="text-center">
+                        <img src="assets/img/press-cmt.jpg" alt="CMT Network" class="img-fluid mb-3" width="120" height="60" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="text-center">
+                        <img src="assets/img/press-nashville.jpg" alt="Buffalo Music Review" class="img-fluid mb-3" width="120" height="60" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fan Reviews Carousel -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Fan Reviews</h2>
+                <p class="lead text-western-tan">What fans are saying about Country J's music and live shows</p>
+            </div>
+
+            <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card bg-transparent border-0 text-center mx-auto" style="max-width: 600px;">
+                            <div class="card-body">
+                                <blockquote class="blockquote">
+                                    <p class="mb-4 fs-5">"Country J doesn't just sing country music - he lives it. Every song feels like it's ripped from his own experiences. The Bluebird Café show was absolutely magical."</p>
+                                    <footer class="blockquote-footer text-western-accent">Sarah M., Buffalo, NY</footer>
+                                </blockquote>
+                                <div class="text-western-gold mb-3">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card bg-transparent border-0 text-center mx-auto" style="max-width: 600px;">
+                            <div class="card-body">
+                                <blockquote class="blockquote">
+                                    <p class="mb-4 fs-5">"His voice has that perfect mix of gravel and soul that reminds me of the greats. 'Honky Tonk Heart' is an instant classic. Can't wait for the next album!"</p>
+                                    <footer class="blockquote-footer text-western-accent">Mike R., Austin, TX</footer>
+                                </blockquote>
+                                <div class="text-western-gold mb-3">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card bg-transparent border-0 text-center mx-auto" style="max-width: 600px;">
+                            <div class="card-body">
+                                <blockquote class="blockquote">
+                                    <p class="mb-4 fs-5">"From the first guitar strum to the final encore, Country J delivers authentic country that touches your soul. His live energy is unmatched - pure Buffalo magic!"</p>
+                                    <footer class="blockquote-footer text-western-accent">Jennifer L., Denver, CO</footer>
+                                </blockquote>
+                                <div class="text-western-gold mb-3">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First review"></button>
+                    <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Second review"></button>
+                    <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Third review"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>About Country J</h5>
+                    <p class="mb-4">
+                        Buffalo-based country artist bringing authentic honky-tonk music that tells real stories and touches real hearts.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/countryj" aria-label="Follow Country J on Instagram">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://tiktok.com/@countryj" aria-label="Follow Country J on TikTok">
+                            <i class="bi bi-tiktok" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://youtube.com/countryj" aria-label="Subscribe to Country J on YouTube">
+                            <i class="bi bi-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://open.spotify.com/artist/countryj" aria-label="Listen to Country J on Spotify">
+                            <i class="bi bi-spotify" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://music.apple.com/artist/countryj" aria-label="Listen to Country J on Apple Music">
+                            <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://facebook.com/countryj" aria-label="Like Country J on Facebook">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="music.html">Music</a></li>
+                        <li><a href="tour.html">Tour Dates</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="bookings.html">Bookings</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5>Stay Connected</h5>
+                    <p>Get the latest updates on new releases, tour dates, and exclusive content.</p>
+
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email address for newsletter" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+
+                    <p class="mt-3 mb-0">
+                        <a href="https://studioliveusa.com" class="footer-links text-decoration-none" target="_blank" rel="noopener">
+                            Powered by Studio USA Live
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="copyright text-center">
+                <p class="mb-0">&copy; 2025 Country J. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

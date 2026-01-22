@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Block access to assets that shouldn't be crawled
+Disallow: /assets/epk/
+Disallow: /assets/press/
+Disallow: /assets/docs/
+
+# Allow access to CSS, JS, and image assets
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/
+
+# Sitemap location
+Sitemap: https://countryjmusic.com/sitemap.xml
+
+
+
