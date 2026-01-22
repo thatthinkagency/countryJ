@@ -12,7 +12,7 @@ Allow: /assets/js/
 Allow: /assets/img/
 
 # Sitemap location
-Sitemap: https://countryjmusic.com/sitemap.xml
+Sitemap: https://thatthinkagency.github.io/countryJ/sitemap.xml
 
 
 
