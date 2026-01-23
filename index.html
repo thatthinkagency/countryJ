@@ -63,6 +63,16 @@
 
     <!-- Coming Soon Hero Section -->
     <section class="coming-soon-hero" id="main-content">
+        <!-- Space Video Background -->
+        <video class="space-video-bg" autoplay muted loop playsinline>
+            <source src="assets/media/space-background.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+            <div class="video-fallback">
+                <div class="stars"></div>
+                <div class="nebula"></div>
+            </div>
+        </video>
+
         <div class="container">
             <div class="row min-vh-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8">
@@ -181,10 +191,10 @@
                             </a>
                         </p>
                         <p class="mb-0">
-                            <i class="bi bi-telephone me-2 text-western-gold"></i>
-                            <a href="tel:+16155551234" class="text-western-tan text-decoration-none">
-                                (615) 555-1234
-                            </a>
+                            <i class="bi bi-whatsapp me-2 text-western-gold"></i>
+                            <span class="text-western-tan">
+                                WhatsApp direct coming soon
+                            </span>
                         </p>
                     </div>
                 </div>
@@ -196,12 +206,7 @@
     <footer class="footer">
         <div class="container">
             <div class="copyright text-center">
-                <p class="mb-2">&copy; 2025 Country J. All rights reserved.</p>
-                <p class="mb-0">
-                    <a href="https://studioliveusa.com" class="footer-links text-decoration-none" target="_blank" rel="noopener">
-                        Powered by Studio USA Live
-                    </a>
-                </p>
+                <p class="mb-0">&copy; 2025 Country J. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -227,6 +232,27 @@
 
                     // Clear form
                     this.reset();
+                });
+            }
+
+            // Handle space video background
+            const spaceVideo = document.querySelector('.space-video-bg');
+            if (spaceVideo) {
+                // Video load handling
+                spaceVideo.addEventListener('loadeddata', function() {
+                    console.log('Space video loaded successfully');
+                });
+
+                // Video error handling - fallback to CSS animation
+                spaceVideo.addEventListener('error', function() {
+                    console.log('Video failed to load, using fallback');
+                    spaceVideo.style.display = 'none';
+                    document.querySelector('.video-fallback').style.display = 'block';
+                });
+
+                // Ensure video plays (some browsers require user interaction)
+                spaceVideo.play().catch(function(error) {
+                    console.log('Video autoplay failed:', error);
                 });
             }
         });

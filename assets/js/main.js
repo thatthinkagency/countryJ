@@ -123,10 +123,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         init() {
-            // Newsletter form
+            // Newsletter forms
             const newsletterForm = document.getElementById('newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', (e) => this.handleNewsletter(e));
+            }
+
+            // Membership newsletter form
+            const membershipNewsletterForm = document.getElementById('membership-newsletter');
+            if (membershipNewsletterForm) {
+                membershipNewsletterForm.addEventListener('submit', (e) => this.handleMembershipNewsletter(e));
             }
 
             // Contact form
@@ -199,6 +205,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.reset();
                 form.querySelector('button').disabled = false;
                 form.querySelector('button').innerHTML = 'Subscribe';
+            }, 1500);
+        }
+
+        handleMembershipNewsletter(e) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.querySelector('input[type="email"]').value.trim();
+
+            if (!email) {
+                this.showToast('Please enter your email address for VIP access.', 'error');
+                return;
+            }
+
+            if (!this.validateEmail(email)) {
+                this.showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Simulate membership form submission
+            form.querySelector('button').disabled = true;
+            form.querySelector('button').innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Joining...';
+
+            setTimeout(() => {
+                this.showToast('Welcome to Country J\'s Inner Circle! Check your email for exclusive access and your first download.');
+                form.reset();
+                form.querySelector('button').disabled = false;
+                form.querySelector('button').innerHTML = '<i class="bi bi-envelope-fill me-2"></i>Sign Up';
             }, 1500);
         }
 
