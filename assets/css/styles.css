@@ -745,10 +745,29 @@ h6 { font-size: 1rem; }
   h2 { font-size: 1.8rem; }
   h3 { font-size: 1.5rem; }
 
-  .hero {
-    min-height: 80vh;
-    padding: 2rem 0;
-  }
+.hero {
+  min-height: 80vh;
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Video Background for Hero Sections */
+.hero .space-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.3; /* More subtle for content pages */
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
 
   .section {
     padding: 3rem 0;
