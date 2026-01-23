@@ -1027,6 +1027,16 @@ h6 { font-size: 1rem; }
   box-shadow: 0 6px 20px rgba(162, 155, 254, 0.4), 0 0 30px rgba(108, 92, 231, 0.3);
 }
 
+.social-btn-small {
+  width: 45px;
+  height: 45px;
+  font-size: 1.1rem;
+}
+
+.social-btn-small:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
 /* Contact Info */
 .contact-info {
   margin-top: 3rem;
