@@ -106,21 +106,18 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(900px 420px at 50% 20%, rgba(0, 0, 0, 0.10), transparent 65%),
-    linear-gradient(180deg, rgba(11, 15, 22, 0.20), rgba(11, 15, 22, 0.82));
+  /* Remove overlay so the hero image stays bright/clean */
+  display: none;
   pointer-events: none;
 }
 
 .sc-hero-bg {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(180deg, rgba(11, 15, 22, 0.25), rgba(11, 15, 22, 0.80)),
-    url("../media/LogoStyles/Mainhero2.png");
+  background-image: url("../media/LogoStyles/Mainhero2.png");
   background-size: cover;
-  background-position: center 40%;
-  filter: saturate(1.05) contrast(1.05);
+  background-position: center;
+  filter: none;
   z-index: 0;
 }
 
