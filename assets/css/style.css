@@ -1,0 +1,302 @@
+/* Country J — Space Cowboy (Bootstrap 5 + custom) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap");
+
+:root {
+  --sc-bg: #0b0f16;
+  --sc-bg-2: #0f1522;
+  --sc-text: #e9eef7;
+  --sc-muted: #9aa6b2;
+
+  --sc-glass: rgba(255, 255, 255, 0.06);
+  --sc-glass-2: rgba(255, 255, 255, 0.10);
+  --sc-border: rgba(255, 255, 255, 0.12);
+
+  --sc-gold-1: #f7e0a3;
+  --sc-gold-2: #d6b36a;
+  --sc-gold-3: #8b6a2a;
+
+  --sc-shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.18);
+  --sc-shadow-deep: 0 18px 50px rgba(0, 0, 0, 0.45);
+
+  --sc-radius: 20px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--sc-text);
+  background: radial-gradient(1200px 700px at 20% 0%, rgba(91, 140, 255, 0.10), transparent 60%),
+    radial-gradient(900px 600px at 85% 15%, rgba(255, 79, 216, 0.08), transparent 55%),
+    linear-gradient(180deg, var(--sc-bg), var(--sc-bg-2));
+  overflow-x: hidden;
+}
+
+/* Subtle star field */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.10) 0 1px, transparent 2px),
+    radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.08) 0 1px, transparent 2px),
+    radial-gradient(circle at 35% 75%, rgba(255, 255, 255, 0.07) 0 1px, transparent 2px),
+    radial-gradient(circle at 85% 70%, rgba(255, 255, 255, 0.06) 0 1px, transparent 2px);
+  background-size: 420px 420px, 520px 520px, 600px 600px, 680px 680px;
+  opacity: 0.55;
+}
+
+/* Navbar */
+.sc-navbar {
+  background: rgba(11, 15, 22, 0.55);
+  border-bottom: 1px solid var(--sc-border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--sc-shadow-soft);
+}
+
+.sc-navbar .navbar-brand {
+  font-family: Outfit, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  opacity: 0.95;
+}
+
+.sc-navbar .nav-link {
+  color: rgba(233, 238, 247, 0.85) !important;
+}
+.sc-navbar .nav-link:hover,
+.sc-navbar .nav-link.active {
+  color: #fff !important;
+}
+
+.sc-navbar .navbar-toggler {
+  border: 1px solid var(--sc-border);
+  border-radius: 14px;
+  box-shadow: var(--sc-shadow-soft);
+}
+.sc-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(214, 179, 106, 0.28);
+}
+
+@media (max-width: 991.98px) {
+  .sc-navbar .navbar-collapse {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(11, 15, 22, 0.55);
+    border: 1px solid var(--sc-border);
+    border-radius: var(--sc-radius);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--sc-shadow-deep);
+  }
+}
+
+/* Hero */
+.sc-hero {
+  position: relative;
+  min-height: 66vh;
+  padding-top: 6.25rem; /* room for fixed navbar */
+  padding-bottom: 2.5rem;
+}
+
+.sc-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 420px at 50% 20%, rgba(0, 0, 0, 0.10), transparent 65%),
+    linear-gradient(180deg, rgba(11, 15, 22, 0.20), rgba(11, 15, 22, 0.82));
+  pointer-events: none;
+}
+
+.sc-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(11, 15, 22, 0.25), rgba(11, 15, 22, 0.80)),
+    url("../media/LogoStyles/cowmoo1.png");
+  background-size: cover;
+  background-position: center 40%;
+  filter: saturate(1.05) contrast(1.05);
+  z-index: 0;
+}
+
+.sc-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sc-hero-title {
+  font-family: Outfit, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.0rem, 8vw, 6.0rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 0.95;
+
+  background: linear-gradient(180deg, var(--sc-gold-1), var(--sc-gold-2) 45%, var(--sc-gold-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.35),
+    0 12px 22px rgba(0, 0, 0, 0.40),
+    0 0 22px rgba(214, 179, 106, 0.15);
+}
+
+.sc-hero-frame {
+  width: min(540px, 84vw);
+  height: 220px;
+  margin: 1.25rem auto 0;
+  border-radius: calc(var(--sc-radius) + 6px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--sc-border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--sc-shadow-deep);
+}
+
+.sc-section {
+  padding: 3.5rem 0;
+}
+
+.sc-section-title {
+  font-family: Outfit, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
+/* Glass cards */
+.sc-card {
+  background: var(--sc-glass);
+  border: 1px solid var(--sc-border);
+  border-radius: var(--sc-radius);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--sc-shadow-soft);
+}
+
+.sc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sc-shadow-deep);
+}
+
+.sc-card,
+.sc-btn,
+.sc-album-tile {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.sc-muted {
+  color: rgba(233, 238, 247, 0.72);
+}
+
+/* Album strip */
+.sc-album-strip {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.sc-album-strip::-webkit-scrollbar {
+  height: 10px;
+}
+.sc-album-strip::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+.sc-album-tile {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 88px;
+  height: 88px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)),
+    radial-gradient(120px 120px at 40% 30%, rgba(214, 179, 106, 0.22), transparent 55%),
+    radial-gradient(120px 120px at 70% 80%, rgba(91, 140, 255, 0.18), transparent 60%);
+  box-shadow: var(--sc-shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.sc-album-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.30));
+}
+
+.sc-album-tile:hover {
+  transform: translateY(-5px);
+  border-color: rgba(214, 179, 106, 0.45);
+}
+
+/* Buttons */
+.sc-btn {
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.15rem;
+}
+
+.sc-btn-gold {
+  background: linear-gradient(180deg, var(--sc-gold-1), var(--sc-gold-2) 60%, var(--sc-gold-3));
+  border: 1px solid rgba(214, 179, 106, 0.35);
+  color: #161617;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+}
+.sc-btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.35);
+  color: #0b0f16;
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .sc-card:hover,
+  .sc-btn:hover,
+  .sc-album-tile:hover {
+    transform: none;
+  }
+}
+
+/* Tiny helper "chip" headings */
+.sc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(233, 238, 247, 0.82);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+

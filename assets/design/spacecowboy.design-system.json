@@ -1,0 +1,84 @@
+{
+  "name": "Country J — Space Cowboy",
+  "source": "Screenshot reference (space cowboy layout)",
+  "tokens": {
+    "color": {
+      "bg": {
+        "canvas": "#0B0F16",
+        "canvas2": "#0F1522",
+        "starGlow": "rgba(255, 255, 255, 0.08)"
+      },
+      "surface": {
+        "glass": "rgba(255, 255, 255, 0.06)",
+        "glass2": "rgba(255, 255, 255, 0.10)",
+        "border": "rgba(255, 255, 255, 0.12)"
+      },
+      "text": {
+        "primary": "#E9EEF7",
+        "muted": "#9AA6B2",
+        "faint": "rgba(233, 238, 247, 0.72)"
+      },
+      "accent": {
+        "gold1": "#F7E0A3",
+        "gold2": "#D6B36A",
+        "gold3": "#8B6A2A",
+        "blue": "#5B8CFF",
+        "pink": "#FF4FD8"
+      },
+      "shadow": {
+        "soft": "0 8px 30px rgba(0, 0, 0, 0.18)",
+        "deep": "0 18px 50px rgba(0, 0, 0, 0.45)"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        "display": "Outfit, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      },
+      "scale": {
+        "heroTitle": "clamp(3.0rem, 8vw, 6.0rem)",
+        "h2": "clamp(1.4rem, 2.4vw, 1.9rem)",
+        "h3": "1.1rem",
+        "body": "1rem",
+        "small": "0.9rem"
+      },
+      "weight": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extraBold": 800
+      },
+      "letterSpacing": {
+        "tight": "-0.02em",
+        "normal": "0",
+        "display": "0.08em"
+      }
+    },
+    "spacing": {
+      "xs": 8,
+      "sm": 12,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "2xl": 48,
+      "sectionY": 56
+    },
+    "radii": {
+      "md": 14,
+      "lg": 18,
+      "xl": 24,
+      "pill": 999
+    },
+    "effects": {
+      "glass": {
+        "backdropFilter": "blur(10px)",
+        "border": "1px solid rgba(255, 255, 255, 0.12)"
+      },
+      "motion": {
+        "hoverLift": "translateY(-5px)",
+        "transition": "0.3s ease"
+      }
+    }
+  }
+}
