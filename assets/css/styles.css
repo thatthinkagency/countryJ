@@ -802,11 +802,32 @@ h6 { font-size: 1rem; }
 
 .coming-soon-hero {
   min-height: 100vh;
+  height: 100vh;
   background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+}
+
+/* Full screen background video - no scrolling */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Background Video Styles - Full screen, fixed, no scrolling */
+.hero-background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3;
 }
 
 .coming-soon-hero::before {
