@@ -315,7 +315,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize form handler
-    new FormHandler();
+    const formHandler = new FormHandler();
+    // Make toast available for other UI actions (share/copy/etc.)
+    window.CJToast = (message, type = 'success') => {
+        try {
+            formHandler.showToast(message, type);
+        } catch {
+            // Fallback: do nothing
+        }
+    };
 
     // ====================
     // TOUR FILTERING
@@ -477,6 +485,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ====================
+    // SHARE BUTTONS (NO DEAD LINKS)
+    // ====================
+    document.addEventListener('click', async (e) => {
+        const btn = e.target && e.target.closest ? e.target.closest('.btn-share') : null;
+        if (!btn) return;
+
+        const shareUrl = window.location.href;
+        const shareData = { title: document.title, url: shareUrl };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+                window.CJToast && window.CJToast('Shared successfully.');
+                return;
+            }
+        } catch {
+            // Ignore share cancellation/errors and try clipboard fallback
+        }
+
+        try {
+            await navigator.clipboard.writeText(shareUrl);
+            window.CJToast && window.CJToast('Link copied to clipboard.');
+        } catch {
+            window.CJToast && window.CJToast('Copy failed — please copy the URL from the address bar.', 'error');
+        }
+    });
+
+    // ====================
     // LAZY LOADING FOR IMAGES
     // ====================
     class LazyLoad {
@@ -576,6 +612,134 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize accessibility enhancements
     new Accessibility();
+
+    // ====================
+    // ACTIVE NAV LINKS
+    // ====================
+    (function setActiveNavLink() {
+        const navLinks = document.querySelectorAll('.navbar .nav-link[href]');
+        if (!navLinks.length) return;
+
+        const currentPath = (window.location.pathname || '').split('/').pop() || 'index.html';
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href') || '';
+            const hrefPath = href.split('/').pop();
+            const isMatch = hrefPath === currentPath;
+            link.classList.toggle('active', isMatch);
+            if (isMatch) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+        });
+    })();
+
+    // ====================
+    // REVEAL ON SCROLL
+    // ====================
+    (function revealOnScroll() {
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        // Mark elements we want to reveal without editing every HTML file
+        const candidates = [
+            ...document.querySelectorAll('section.section'),
+            ...document.querySelectorAll('.card'),
+            ...document.querySelectorAll('.tour-item'),
+            ...document.querySelectorAll('.video-card')
+        ];
+
+        const unique = Array.from(new Set(candidates));
+        unique.forEach(el => el.classList.add('reveal'));
+
+        if (!('IntersectionObserver' in window)) {
+            unique.forEach(el => el.classList.add('is-visible'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        unique.forEach(el => observer.observe(el));
+    })();
+
+    // ====================
+    // FUN CURSOR (DESKTOP ONLY)
+    // ====================
+    (function funCursor() {
+        const isFinePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!isFinePointer || prefersReducedMotion) return;
+
+        const dot = document.createElement('div');
+        dot.className = 'cj-cursor-dot';
+        const ring = document.createElement('div');
+        ring.className = 'cj-cursor-ring';
+        document.body.appendChild(dot);
+        document.body.appendChild(ring);
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .cj-cursor-dot, .cj-cursor-ring {
+                position: fixed;
+                top: 0; left: 0;
+                pointer-events: none;
+                z-index: 99999;
+                transform: translate(-50%, -50%);
+            }
+            .cj-cursor-dot {
+                width: 7px; height: 7px;
+                border-radius: 999px;
+                background: rgba(124, 58, 237, 0.95);
+                box-shadow: 0 0 18px rgba(124, 58, 237, 0.55);
+            }
+            .cj-cursor-ring {
+                width: 26px; height: 26px;
+                border-radius: 999px;
+                border: 2px solid rgba(255, 255, 255, 0.22);
+                backdrop-filter: blur(6px);
+                transition: width .15s ease, height .15s ease, border-color .15s ease, box-shadow .15s ease;
+                box-shadow: 0 0 30px rgba(0,0,0,0.12);
+            }
+            .cj-cursor-ring.is-hover {
+                width: 34px; height: 34px;
+                border-color: rgba(124, 58, 237, 0.65);
+                box-shadow: 0 0 36px rgba(124, 58, 237, 0.18);
+            }
+        `;
+        document.head.appendChild(style);
+
+        let x = window.innerWidth / 2;
+        let y = window.innerHeight / 2;
+        let rx = x;
+        let ry = y;
+
+        window.addEventListener('mousemove', (e) => {
+            x = e.clientX;
+            y = e.clientY;
+            dot.style.top = `${y}px`;
+            dot.style.left = `${x}px`;
+        }, { passive: true });
+
+        function animate() {
+            rx += (x - rx) * 0.18;
+            ry += (y - ry) * 0.18;
+            ring.style.top = `${ry}px`;
+            ring.style.left = `${rx}px`;
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target;
+            if (!target) return;
+            const hoverable = target.closest && target.closest('a, button, .btn, .linktree-link, .card');
+            ring.classList.toggle('is-hover', !!hoverable);
+        }, { passive: true });
+    })();
 
     // ====================
     // PERFORMANCE OPTIMIZATIONS
