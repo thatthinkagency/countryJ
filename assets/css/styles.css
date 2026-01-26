@@ -321,25 +321,43 @@ h6 { font-size: 1rem; }
 .hero-slider h1 {
   font-size: 4rem;
   font-weight: 900;
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 3px 3px 6px rgba(0,0,0,0.7);
+  color: #fff;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--western-gold), var(--western-star));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+}
+
+.hero-slider h1 span,
+.hero-slider .text-western-accent {
+  color: #fff !important;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
 }
 
 .hero-slider .lead {
   font-size: 1.5rem;
-  color: var(--western-tan);
+  color: #fff;
+  font-weight: 700;
   margin-bottom: 2rem;
-  text-shadow: 0 0 10px rgba(210, 180, 140, 0.5);
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
 }
 
 .hero-slider .btn {
   margin: 0 0.5rem 1rem 0;
   padding: 1rem 2rem;
   font-weight: 700;
+  color: #fff;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 25px;
@@ -350,25 +368,25 @@ h6 { font-size: 1rem; }
 .hero-slider .btn-primary {
   background: linear-gradient(45deg, var(--western-gold), var(--western-star));
   border: none;
-  color: var(--western-text-dark);
+  color: #fff;
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .hero-slider .btn-primary:hover {
   box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-  color: var(--western-text-dark);
+  color: #fff;
 }
 
 .hero-slider .btn-outline-light {
   border: 2px solid var(--western-tan);
-  color: var(--western-tan);
+  color: #fff;
   background: transparent;
   box-shadow: 0 0 15px rgba(210, 180, 140, 0.3);
 }
 
 .hero-slider .btn-outline-light:hover {
   background: var(--western-tan);
-  color: var(--western-text-dark);
+  color: #fff;
   box-shadow: 0 0 20px rgba(210, 180, 140, 0.5);
 }
 
