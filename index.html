@@ -37,30 +37,6 @@
     <!-- Custom CSS -->
     <link href="assets/css/styles.css" rel="stylesheet">
 
-    <!-- Scroll slider (same as treelink) -->
-    <style>
-        .scroll-slider {
-            position: fixed;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%) rotate(90deg);
-            transform-origin: center;
-            width: 55vh;
-            max-width: 520px;
-            min-width: 220px;
-            height: 18px;
-            z-index: 9999;
-            opacity: 0.65;
-            background: transparent;
-        }
-        .scroll-slider:hover { opacity: 1; }
-        .scroll-slider:focus { outline: none; }
-        .scroll-slider:disabled {
-            opacity: 0.30;
-            cursor: not-allowed;
-        }
-    </style>
-
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -213,41 +189,5 @@
         });
     </script>
 
-    <!-- Scroll slider JS -->
-    <script>
-        (function () {
-            const slider = document.getElementById('scrollSlider');
-            if (!slider) return;
-
-            function getScrollableHeight() {
-                const doc = document.documentElement;
-                return Math.max(0, doc.scrollHeight - doc.clientHeight);
-            }
-
-            function updateSliderFromScroll() {
-                const scrollable = getScrollableHeight();
-                const y = window.scrollY || document.documentElement.scrollTop || 0;
-                const ratio = scrollable === 0 ? 0 : (y / scrollable);
-                slider.value = String(Math.round(ratio * Number(slider.max)));
-
-                // Keep visible on index, but disable when scrolling isn't possible
-                slider.disabled = scrollable === 0;
-            }
-
-            function scrollFromSlider() {
-                const scrollable = getScrollableHeight();
-                if (scrollable === 0) return;
-                const ratio = Number(slider.value) / Number(slider.max);
-                window.scrollTo({ top: Math.round(ratio * scrollable), behavior: 'auto' });
-            }
-
-            window.addEventListener('scroll', updateSliderFromScroll, { passive: true });
-            window.addEventListener('resize', updateSliderFromScroll);
-            slider.addEventListener('input', scrollFromSlider);
-
-            // Initial sync
-            updateSliderFromScroll();
-        })();
-    </script>
 </body>
 </html>

@@ -485,6 +485,45 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ====================
+    // SCROLL SLIDER (PAGE SCROLL CONTROL)
+    // ====================
+    (function initScrollSlider() {
+        const slider = document.getElementById('scrollSlider');
+        if (!slider) return;
+
+        function getScrollableHeight() {
+            const doc = document.documentElement;
+            return Math.max(0, doc.scrollHeight - doc.clientHeight);
+        }
+
+        function updateSliderFromScroll() {
+            const scrollable = getScrollableHeight();
+            const y = window.scrollY || document.documentElement.scrollTop || 0;
+            const ratio = scrollable === 0 ? 0 : (y / scrollable);
+            slider.value = String(Math.round(ratio * Number(slider.max)));
+
+            // Hide/disable if no scrolling is possible
+            const isScrollable = scrollable > 0;
+            slider.style.display = isScrollable ? '' : 'none';
+            slider.disabled = !isScrollable;
+        }
+
+        function scrollFromSlider() {
+            const scrollable = getScrollableHeight();
+            if (scrollable === 0) return;
+            const ratio = Number(slider.value) / Number(slider.max);
+            window.scrollTo({ top: Math.round(ratio * scrollable), behavior: 'auto' });
+        }
+
+        window.addEventListener('scroll', updateSliderFromScroll, { passive: true });
+        window.addEventListener('resize', updateSliderFromScroll);
+        slider.addEventListener('input', scrollFromSlider);
+
+        // Initial sync
+        updateSliderFromScroll();
+    })();
+
+    // ====================
     // SHARE BUTTONS (NO DEAD LINKS)
     // ====================
     document.addEventListener('click', async (e) => {
@@ -748,7 +787,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloadImages = [
         'assets/media/hero-country-j-live.jpg',
         'assets/media/hero-country-j-music.jpg',
-        'assets/media/hero-country-j-tour.jpg'
+        'assets/media/hero-country-j-tour.jpg',
+        'assets/media/LogoStyles/nologoheadercountryj.jpeg'
     ];
     preloadImages.forEach(src => {
         const img = new Image();

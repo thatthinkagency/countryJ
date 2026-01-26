@@ -118,27 +118,6 @@
             color: var(--western-gold);
         }
 
-        /* Scroll slider (page scroll) */
-        .scroll-slider {
-            position: fixed;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%) rotate(90deg);
-            transform-origin: center;
-            width: 55vh;
-            max-width: 520px;
-            min-width: 220px;
-            height: 18px;
-            z-index: 9999;
-            opacity: 0.65;
-            background: transparent;
-        }
-        .scroll-slider:hover {
-            opacity: 1;
-        }
-        .scroll-slider:focus {
-            outline: none;
-        }
     </style>
 </head>
 <body class="bg-dark">
@@ -236,39 +215,8 @@
     <!-- Bootstrap 5.3 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-    <script>
-        (function () {
-            const slider = document.getElementById('scrollSlider');
-            if (!slider) return;
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
 
-            function getScrollableHeight() {
-                const doc = document.documentElement;
-                return Math.max(0, doc.scrollHeight - doc.clientHeight);
-            }
-
-            function updateSliderFromScroll() {
-                const scrollable = getScrollableHeight();
-                const y = window.scrollY || document.documentElement.scrollTop || 0;
-                const ratio = scrollable === 0 ? 0 : (y / scrollable);
-                slider.value = String(Math.round(ratio * Number(slider.max)));
-
-                // Hide slider if no scrolling is possible
-                slider.style.display = scrollable === 0 ? 'none' : '';
-            }
-
-            function scrollFromSlider() {
-                const scrollable = getScrollableHeight();
-                const ratio = Number(slider.value) / Number(slider.max);
-                window.scrollTo({ top: Math.round(ratio * scrollable), behavior: 'auto' });
-            }
-
-            window.addEventListener('scroll', updateSliderFromScroll, { passive: true });
-            window.addEventListener('resize', updateSliderFromScroll);
-            slider.addEventListener('input', scrollFromSlider);
-
-            // Initial sync
-            updateSliderFromScroll();
-        })();
-    </script>
 </body>
 </html>
