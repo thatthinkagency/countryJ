@@ -186,6 +186,18 @@ h6 { font-size: 1rem; }
   color: #fff;
 }
 
+/* Transparent white CTA */
+.btn-ghost-white {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+.btn-ghost-white:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
 /* Mobile navbar collapse "glass panel" */
 @media (max-width: 991.98px) {
   .navbar .navbar-collapse {
