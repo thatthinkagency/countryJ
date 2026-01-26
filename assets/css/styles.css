@@ -45,6 +45,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Firefox background attachment fallback */
+@supports (-moz-appearance: none) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
 /* Coming-soon splash should not offset for navbar */
 body.no-scroll {
   padding-top: 0;
@@ -284,6 +291,12 @@ h6 { font-size: 1rem; }
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+@supports (-moz-appearance: none) {
+  .hero-slide {
+    background-attachment: scroll;
+  }
 }
 
 .hero-slide::before {
@@ -1224,6 +1237,10 @@ body.no-scroll {
     padding: 0.75rem 1rem;
     font-size: 1rem;
   }
+
+  .coming-soon-hero .btn-ghost-white {
+    width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1260,6 +1277,25 @@ body.no-scroll {
   .email-signup,
   .social-links {
     margin: 2rem 0;
+  }
+
+  .coming-soon-hero .newsletter-form .input-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .coming-soon-hero .newsletter-form .form-control,
+  .coming-soon-hero .newsletter-form .btn {
+    width: 100%;
+    border-radius: 1.25rem;
+  }
+
+  .coming-soon-hero .newsletter-form .form-control {
+    border-right: 2px solid var(--western-gold);
+  }
+
+  .coming-soon-hero .newsletter-form .btn {
+    border-left: 2px solid var(--western-gold);
   }
 
   .contact-info {
