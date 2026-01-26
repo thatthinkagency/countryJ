@@ -129,6 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 newsletterForm.addEventListener('submit', (e) => this.handleNewsletter(e));
             }
 
+            // Coming soon newsletter form
+            const comingSoonForm = document.getElementById('coming-soon-newsletter');
+            if (comingSoonForm) {
+                comingSoonForm.addEventListener('submit', (e) => this.handleComingSoonNewsletter(e));
+            }
+
             // Membership newsletter form
             const membershipNewsletterForm = document.getElementById('membership-newsletter');
             if (membershipNewsletterForm) {
@@ -151,6 +157,25 @@ document.addEventListener('DOMContentLoaded', function() {
         validateEmail(email) {
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return regex.test(email);
+        }
+
+        buildBody(lines) {
+            return lines.filter(Boolean).join('\n');
+        }
+
+        openMailClient(subject, body) {
+            const to = 'officialcountryj@proton.me';
+            const params = new URLSearchParams({
+                subject,
+                body
+            });
+            window.location.href = `mailto:${to}?${params.toString()}`;
+        }
+
+        redirectToTreelink() {
+            setTimeout(() => {
+                window.location.href = 'treelink.html?thanks=1';
+            }, 300);
         }
 
         showToast(message, type = 'success') {
@@ -196,16 +221,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission
-            form.querySelector('button').disabled = true;
-            form.querySelector('button').innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Subscribing...';
+            const body = this.buildBody([
+                'Newsletter signup request',
+                `Email: ${email}`,
+                `Page: ${window.location.pathname}`
+            ]);
+            this.openMailClient('Newsletter Signup', body);
+            form.reset();
+            this.redirectToTreelink();
+        }
 
-            setTimeout(() => {
-                this.showToast('Thanks for subscribing! Check your email for confirmation.');
-                form.reset();
-                form.querySelector('button').disabled = false;
-                form.querySelector('button').innerHTML = 'Subscribe';
-            }, 1500);
+        handleComingSoonNewsletter(e) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.querySelector('input[type="email"]').value.trim();
+
+            if (!email) {
+                this.showToast('Please enter your email address.', 'error');
+                return;
+            }
+
+            if (!this.validateEmail(email)) {
+                this.showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            const body = this.buildBody([
+                'Coming soon notification request',
+                `Email: ${email}`,
+                `Page: ${window.location.pathname}`
+            ]);
+            this.openMailClient('Coming Soon Notification', body);
+            form.reset();
+            this.redirectToTreelink();
         }
 
         handleMembershipNewsletter(e) {
@@ -223,16 +271,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate membership form submission
-            form.querySelector('button').disabled = true;
-            form.querySelector('button').innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Joining...';
-
-            setTimeout(() => {
-                this.showToast('Welcome to Country J\'s Inner Circle! Check your email for exclusive access and your first download.');
-                form.reset();
-                form.querySelector('button').disabled = false;
-                form.querySelector('button').innerHTML = '<i class="bi bi-envelope-fill me-2"></i>Sign Up';
-            }, 1500);
+            const body = this.buildBody([
+                'Membership newsletter signup',
+                `Email: ${email}`,
+                `Page: ${window.location.pathname}`
+            ]);
+            this.openMailClient('Membership Signup', body);
+            form.reset();
+            this.redirectToTreelink();
         }
 
         handleContact(e) {
@@ -261,17 +307,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending...';
+            const name = form.querySelector('#contact-name')?.value.trim() || '';
+            const subject = form.querySelector('#contact-subject')?.value || '';
+            const message = form.querySelector('#contact-message')?.value.trim() || '';
+            const wantsNewsletter = form.querySelector('#newsletter-signup')?.checked ? 'Yes' : 'No';
 
-            setTimeout(() => {
-                this.showToast('Thanks for your message! We\'ll get back to you soon.');
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Send Message';
-            }, 2000);
+            const body = this.buildBody([
+                'Contact form submission',
+                name ? `Name: ${name}` : null,
+                `Email: ${email.value.trim()}`,
+                subject ? `Subject: ${subject}` : null,
+                `Newsletter signup: ${wantsNewsletter}`,
+                '',
+                'Message:',
+                message || '(No message provided)'
+            ]);
+
+            this.openMailClient('Website Contact Form', body);
+            form.reset();
+            this.redirectToTreelink();
         }
 
         handleBooking(e) {
@@ -300,17 +354,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Submitting...';
+            const body = this.buildBody([
+                'Booking request',
+                `Event Type: ${form.querySelector('#event-type')?.value || ''}`,
+                `Preferred Date: ${form.querySelector('#event-date')?.value || ''}`,
+                `Venue Name: ${form.querySelector('#venue-name')?.value || ''}`,
+                `City, State: ${form.querySelector('#city-state')?.value || ''}`,
+                `Budget Range: ${form.querySelector('#budget-range')?.value || ''}`,
+                `Expected Attendance: ${form.querySelector('#expected-attendance')?.value || ''}`,
+                `Contact Name: ${form.querySelector('#contact-name')?.value || ''}`,
+                `Email: ${email.value.trim()}`,
+                `Phone: ${form.querySelector('#contact-phone')?.value || ''}`,
+                `Performance Duration: ${form.querySelector('#performance-duration')?.value || ''}`,
+                `Technical rider reviewed: ${form.querySelector('#technical-rider')?.checked ? 'Yes' : 'No'}`,
+                '',
+                'Additional Notes:',
+                form.querySelector('#additional-notes')?.value.trim() || '(None)'
+            ]);
 
-            setTimeout(() => {
-                this.showToast('Booking request submitted! We\'ll contact you within 24 hours.');
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Submit Booking Request';
-            }, 2500);
+            this.openMailClient('Booking Request', body);
+            form.reset();
+            this.redirectToTreelink();
         }
     }
 
@@ -521,6 +585,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initial sync
         updateSliderFromScroll();
+    })();
+
+    // ====================
+    // TREELINK THANK YOU MESSAGE
+    // ====================
+    (function showTreelinkThanks() {
+        const thanksBanner = document.getElementById('treelink-thanks');
+        if (!thanksBanner) return;
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('thanks') === '1') {
+            thanksBanner.classList.remove('d-none');
+        }
     })();
 
     // ====================
