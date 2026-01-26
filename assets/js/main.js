@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Sample tracklist data
             const tracklists = {
                 'release-1': [
-                    '1. Honky Tonk Heart',
+                    '1. Original New and Unique Heart',
                     '2. Dirt Road Dreams',
                     '3. Whiskey & Women',
                     '4. Buffalo Nights',
