@@ -1151,8 +1151,11 @@ body.no-scroll {
 .coming-soon-hero h1 {
   font-size: 5rem;
   font-weight: 900;
-  color: var(--western-gold);
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
   margin-bottom: 2rem;
 }
 
@@ -1167,18 +1170,35 @@ body.no-scroll {
 
 .coming-soon-hero h2 {
   font-size: 3rem;
-  font-weight: 700;
-  text-shadow: 0 0 20px rgba(255, 107, 53, 0.8), 2px 2px 4px rgba(0,0,0,0.7);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
   margin-bottom: 2rem;
 }
 
 .coming-soon-hero .lead {
   font-size: 1.5rem;
-  color: var(--western-tan);
-  text-shadow: 0 0 15px rgba(210, 180, 140, 0.6);
+  color: #fff;
+  font-weight: 700;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
   max-width: 600px;
   margin: 0 auto 3rem;
   line-height: 1.6;
+}
+
+.coming-soon-hero h3 {
+  color: #fff;
+  font-weight: 800;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.9),
+               1px -1px 0 rgba(0, 0, 0, 0.9),
+               -1px 1px 0 rgba(0, 0, 0, 0.9),
+               1px 1px 0 rgba(0, 0, 0, 0.9);
 }
 
 /* Email Signup */
