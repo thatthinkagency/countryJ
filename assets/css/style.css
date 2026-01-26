@@ -21,6 +21,17 @@
   --sc-radius: 20px;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
 html,
 body {
   height: 100%;

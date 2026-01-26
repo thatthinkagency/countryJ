@@ -34,6 +34,20 @@
   --cj-shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.05);
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  max-width: 100%;
+}
+
 /* Global Styles */
 body {
   background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%);
@@ -92,6 +106,15 @@ html {
 /* Firefox background attachment fallback */
 @supports (-moz-appearance: none) {
   body {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll;
+  }
+  .hero-slide {
     background-attachment: scroll;
   }
 }
