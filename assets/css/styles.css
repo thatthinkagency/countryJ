@@ -930,18 +930,15 @@ h6 { font-size: 1rem; }
 
 .coming-soon-hero {
   min-height: 100vh;
-  height: 100vh;
   background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%);
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
 }
 
-/* Full screen background video - no scrolling (coming soon only) */
+/* Full screen background video (coming soon only) */
 html.no-scroll,
 body.no-scroll {
-  overflow: hidden;
   height: 100%;
 }
 
