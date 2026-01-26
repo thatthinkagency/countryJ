@@ -954,43 +954,7 @@ body.no-scroll {
   height: 100vh;
   object-fit: cover;
   z-index: 0;
-  opacity: 0.3;
-}
-
-.coming-soon-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(108, 92, 231, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(162, 155, 254, 0.15) 0%, transparent 50%);
-  z-index: 1;
-}
-
-.coming-soon-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    radial-gradient(2px 2px at 20px 30px, var(--western-star), transparent),
-    radial-gradient(2px 2px at 40px 70px, var(--western-nebula), transparent),
-    radial-gradient(1px 1px at 90px 40px, var(--western-galaxy), transparent),
-    radial-gradient(1px 1px at 130px 80px, var(--western-star), transparent),
-    radial-gradient(2px 2px at 160px 30px, var(--western-nebula), transparent),
-    radial-gradient(1px 1px at 200px 90px, var(--western-gold), transparent),
-    radial-gradient(2px 2px at 250px 60px, var(--western-accent), transparent);
-  background-repeat: repeat;
-  background-size: 300px 150px;
-  animation: twinkle 6s ease-in-out infinite alternate;
-  opacity: 0.6;
-  z-index: 1;
+  opacity: 1;
 }
 
 .coming-soon-hero .container {
