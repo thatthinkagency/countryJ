@@ -1017,8 +1017,7 @@ h6 { font-size: 1rem; }
 
 .coming-soon-hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%),
-              url('assets/media/hero-country-j-live.jpg') center/cover no-repeat;
+  background: #000;
   display: flex;
   align-items: center;
   position: relative;
@@ -1051,9 +1050,8 @@ body.no-scroll {
 .coming-soon-logo {
   max-width: 300px;
   height: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8))
-          drop-shadow(0 0 40px rgba(108, 92, 231, 0.4));
-  animation: logoGlow 4s ease-in-out infinite alternate;
+  filter: none;
+  animation: none;
   margin: 0 auto;
 }
 
