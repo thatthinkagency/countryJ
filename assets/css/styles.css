@@ -45,6 +45,49 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iOS Safari tuning */
+@supports (-webkit-touch-callout: none) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .navbar {
+    padding-top: calc(1rem + env(safe-area-inset-top));
+  }
+
+  .coming-soon-hero {
+    min-height: 100svh;
+  }
+
+  .hero-background-video {
+    height: 100svh;
+  }
+
+  .hero-slide {
+    min-height: 100svh;
+    background-attachment: scroll;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .btn,
+  .linktree-link {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 /* Firefox background attachment fallback */
 @supports (-moz-appearance: none) {
   body {
