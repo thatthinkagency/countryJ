@@ -1021,6 +1021,7 @@ h6 { font-size: 1rem; }
   display: flex;
   align-items: center;
   position: relative;
+  padding-bottom: 90px;
 }
 
 /* Full screen background video (coming soon only) */
@@ -1045,6 +1046,22 @@ body.no-scroll {
 .coming-soon-hero .container {
   position: relative;
   z-index: 2;
+}
+
+.coming-soon-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.9rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.coming-soon-footer .container {
+  max-width: 960px;
 }
 
 .coming-soon-logo {
