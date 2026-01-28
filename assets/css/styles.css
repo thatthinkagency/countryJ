@@ -77,10 +77,16 @@ html {
 
   .coming-soon-hero {
     min-height: 100svh;
+    height: 100svh;
   }
 
   .hero-background-video {
     height: 100svh;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
   }
 
   .hero-slide {
@@ -1040,11 +1046,14 @@ h6 { font-size: 1rem; }
 
 .coming-soon-hero {
   min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   background: #000;
   display: flex;
   align-items: center;
   position: relative;
   padding-bottom: 90px;
+  overflow: hidden;
 }
 
 /* Full screen background video (coming soon only) */
@@ -1055,11 +1064,12 @@ body.no-scroll {
 
 /* Background Video Styles - Full screen, fixed, no scrolling */
 .hero-background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
   z-index: 0;
   opacity: 1;
