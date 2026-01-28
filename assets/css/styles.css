@@ -1046,20 +1046,19 @@ h6 { font-size: 1rem; }
 
 .coming-soon-hero {
   min-height: 100vh;
-  height: 100vh;
+  height: auto;
   width: 100%;
   background: #000;
-  display: flex;
-  align-items: center;
   position: relative;
-  padding-bottom: 90px;
-  overflow: hidden;
+  padding: 4rem 0 3rem;
+  overflow: visible;
 }
 
 /* Full screen background video (coming soon only) */
 html.no-scroll,
 body.no-scroll {
-  height: 100%;
+  min-height: 100%;
+  height: auto;
 }
 
 /* Background Video Styles - Full screen, fixed, no scrolling */
@@ -1082,15 +1081,14 @@ body.no-scroll {
 }
 
 .coming-soon-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 16px;
+  position: relative;
   text-align: center;
   color: #fff;
   font-size: 0.9rem;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   z-index: 2;
+  margin-top: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .coming-soon-footer .container {
