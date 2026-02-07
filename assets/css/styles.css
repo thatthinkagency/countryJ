@@ -797,10 +797,47 @@ h6 { font-size: 1rem; }
 }
 
 /* ============================================
+   Video Background Styles
+   ============================================ */
+
+.video-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(15, 15, 35, 0.3), rgba(45, 52, 54, 0.7));
+  z-index: -1;
+}
+
+.video-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
    Coming Soon Page Styles
    ============================================ */
 
-.coming-soon-hero {
+.coming-soon-hero, .video-hero {
   min-height: 100vh;
   background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%);
   display: flex;
