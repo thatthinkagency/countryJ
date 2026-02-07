@@ -244,6 +244,25 @@ h6 { font-size: 1rem; }
   box-shadow: 0 0 20px rgba(210, 180, 140, 0.5);
 }
 
+/* White CTA Button for CountrysTree link */
+.video-hero .btn-outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.video-hero .btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: white;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
 /* Carousel Customizations */
 .hero-slider .carousel-control-prev,
 .hero-slider .carousel-control-next {
