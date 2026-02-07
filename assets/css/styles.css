@@ -25,12 +25,12 @@
 
 /* Global Styles */
 body {
-  background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%);
+  background: transparent;
   color: var(--western-text-light);
   font-family: 'Georgia', 'Times New Roman', serif;
   line-height: 1.6;
   background-attachment: fixed;
-  padding-top: 80px; /* Account for fixed navbar height */
+  padding-top: 0; /* Remove padding since no navbar */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -858,7 +858,7 @@ h6 { font-size: 1rem; }
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(rgba(15, 15, 35, 0.3), rgba(45, 52, 54, 0.7));
+  background: linear-gradient(rgba(15, 15, 35, 0.1), rgba(45, 52, 54, 0.2));
   z-index: -1;
 }
 
