@@ -79,9 +79,19 @@
     <!-- Page Divider -->
     <div class="page-divider"></div>
 
-    <!-- Hero Section -->
-    <section class="hero" style="background-image: linear-gradient(rgba(15, 15, 35, 0.8), rgba(45, 52, 54, 0.9)), url('assets/media/hero-country-j-tour.jpg');" id="main-content">
-        <div class="container">
+    <!-- Hero Section with Video Background -->
+    <section class="hero" id="main-content" style="background: #0f0f23; overflow: hidden;">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline preload="auto"
+               poster="assets/media/hero-country-j-tour.jpg"
+               style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+            <source src="assets/media/moonman.mov" type="video/quicktime">
+            <source src="assets/media/moonman.mov" type="video/mp4">
+        </video>
+        <!-- Dark overlay for text readability -->
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(15,15,35,0.6),rgba(45,52,54,0.7));z-index:1;"></div>
+
+        <div class="container" style="position:relative;z-index:2;">
             <div class="row align-items-center min-vh-75">
                 <div class="col-lg-8">
                     <h1 class="display-2 fw-bold mb-4">
@@ -105,80 +115,80 @@
     </section>
 
     <!-- Performance Options Section -->
-    <section class="section" id="performance-options">
+    <section class="section" id="performance-options" style="background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #0a1a30 100%);">
         <div class="container">
             <div class="text-center mb-5">
-                <h2>What You Get With Country J</h2>
-                <p class="lead text-western-tan">Tailored performance packages for every occasion</p>
+                <h2 class="fw-bold">What You Get With Country J</h2>
+                <p class="lead fw-bold" style="color: var(--western-tan);">Tailored performance packages for every occasion</p>
             </div>
 
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <div class="card h-100 border-0 bg-transparent">
+                    <div class="card h-100 border-0" style="background: rgba(13, 27, 52, 0.9); border: 1px solid rgba(212, 175, 55, 0.2) !important;">
                         <div class="card-body text-center">
                             <div class="display-1 text-western-gold mb-4">
                                 <i class="bi bi-mic-fill" aria-hidden="true"></i>
                             </div>
-                            <h3 class="card-title">Solo Acoustic</h3>
-                            <p class="card-text mb-4">
+                            <h3 class="card-title fw-bold">Solo Acoustic</h3>
+                            <p class="card-text mb-4 fw-bold" style="color: #ffffff;">
                                 Intimate, stripped-down performances perfect for smaller venues, private events, and acoustic showcases. Just Country J and his guitar.
                             </p>
                             <ul class="list-unstyled text-start mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>45-60 minute set</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Custom song selection</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Sound system provided</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Perfect for 50-200 guests</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>45-60 minute set</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Custom song selection</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Sound system provided</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Perfect for 50-200 guests</li>
                             </ul>
-                            <div class="badge bg-nashville-accent p-2">Starting at $5,000</div>
+                            <div class="badge bg-western-accent p-2 fw-bold fs-6">Starting at $5,000</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="card h-100 border-0 bg-transparent">
+                    <div class="card h-100 border-0" style="background: rgba(13, 27, 52, 0.9); border: 1px solid rgba(212, 175, 55, 0.2) !important;">
                         <div class="card-body text-center">
                             <div class="display-1 text-western-gold mb-4">
                                 <i class="bi bi-music-note-list" aria-hidden="true"></i>
                             </div>
-                            <h3 class="card-title">Full Band Show</h3>
-                            <p class="card-text mb-4">
+                            <h3 class="card-title fw-bold">Full Band Show</h3>
+                            <p class="card-text mb-4 fw-bold" style="color: #ffffff;">
                                 The complete Country J experience with his full touring band. High-energy performances for larger venues and festivals.
                             </p>
                             <ul class="list-unstyled text-start mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>75-90 minute set</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>5-piece band + vocals</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Full production (lights, sound)</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Ideal for 200-2000+ guests</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>75-90 minute set</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>5-piece band + vocals</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Full production (lights, sound)</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Ideal for 200-2000+ guests</li>
                             </ul>
-                            <div class="badge bg-nashville-accent p-2">Starting at $25,000</div>
+                            <div class="badge bg-western-accent p-2 fw-bold fs-6">Starting at $25,000</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="card h-100 border-0 bg-transparent">
+                    <div class="card h-100 border-0" style="background: rgba(13, 27, 52, 0.9); border: 1px solid rgba(212, 175, 55, 0.2) !important;">
                         <div class="card-body text-center">
                             <div class="display-1 text-western-gold mb-4">
                                 <i class="bi bi-star-fill" aria-hidden="true"></i>
                             </div>
-                            <h3 class="card-title">Festival Performance</h3>
-                            <p class="card-text mb-4">
+                            <h3 class="card-title fw-bold">Festival Performance</h3>
+                            <p class="card-text mb-4 fw-bold" style="color: #ffffff;">
                                 Main stage presence for major festivals and outdoor events. Custom set times and production scaled to festival requirements.
                             </p>
                             <ul class="list-unstyled text-start mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>45-75 minute set</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Festival production package</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Main stage ready</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Multi-act festival billing</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>45-75 minute set</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Festival production package</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Main stage ready</li>
+                                <li class="mb-2 fw-bold" style="color: #ffffff;"><i class="bi bi-check-circle-fill text-western-gold me-2" aria-hidden="true"></i>Multi-act festival billing</li>
                             </ul>
-                            <div class="badge bg-nashville-accent p-2">Starting at $35,000</div>
+                            <div class="badge bg-western-accent p-2 fw-bold fs-6">Starting at $35,000</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-5">
-                <p class="text-nashville-tan mb-3">All packages include professional sound, staging, and technical support. Travel and accommodations additional.</p>
+                <p class="fw-bold mb-3" style="color: #ffffff;">All packages include professional sound, staging, and technical support. Travel and accommodations additional.</p>
                 <a href="#booking-section" class="btn btn-primary btn-lg">
                     <i class="bi bi-arrow-down-circle me-2"></i>Get Started
                 </a>
@@ -292,7 +302,7 @@
                                         <button type="submit" class="btn btn-submit btn-lg px-5">
                                             Submit Booking Request
                                         </button>
-                                        <p class="mt-3 mb-0 text-nashville-tan">
+                                        <p class="mt-3 mb-0 text-western-tan">
                                             <small>We'll respond within 24 hours with availability and pricing details.</small>
                                         </p>
                                     </div>
@@ -311,7 +321,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="technicalRiderLabel">Technical Rider - Country J</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <h6 class="text-western-gold mb-3">Stage & Sound Requirements</h6>
@@ -365,23 +375,20 @@
                         Self-producing powerhouse born in Ann Arbor, raised in Buffalo. Son of a preacher — Midwest heart meets Northeast hustle.
                     </p>
                     <div class="social-icons">
-                        <a href="https://www.instagram.com/officialcountryj/" aria-label="Follow Country J on Instagram">
+                        <a href="https://www.instagram.com/officialcountryj/" target="_blank" rel="noopener" aria-label="Follow Country J on Instagram">
                             <i class="bi bi-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://tiktok.com/@countryj" aria-label="Follow Country J on TikTok">
+                        <a href="https://www.tiktok.com/@justjusbeatz?_r=1&_t=ZT-93KgvtCmwdK" target="_blank" rel="noopener" aria-label="Follow Country J on TikTok">
                             <i class="bi bi-tiktok" aria-hidden="true"></i>
                         </a>
-                        <a href="https://youtube.com/countryj" aria-label="Subscribe to Country J on YouTube">
+                        <a href="https://www.youtube.com/@CountryJWorld/videos" target="_blank" rel="noopener" aria-label="Subscribe to Country J on YouTube">
                             <i class="bi bi-youtube" aria-hidden="true"></i>
                         </a>
-                        <a href="https://open.spotify.com/artist/countryj" aria-label="Listen to Country J on Spotify">
+                        <a href="https://open.spotify.com/artist/7gwIq8Z4ayntYt5nPseSJK?si=ncf05a5ZTRiWX020GOOajA" target="_blank" rel="noopener" aria-label="Listen to Country J on Spotify">
                             <i class="bi bi-spotify" aria-hidden="true"></i>
                         </a>
-                        <a href="https://music.apple.com/artist/countryj" aria-label="Listen to Country J on Apple Music">
+                        <a href="https://music.apple.com/us/album/whole-lotta-money-single/1806060093" target="_blank" rel="noopener" aria-label="Listen to Country J on Apple Music">
                             <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://facebook.com/countryj" aria-label="Like Country J on Facebook">
-                            <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -426,5 +433,13 @@
 
     <!-- Custom JavaScript -->
     <script src="assets/js/main.js"></script>
+
+    <!-- Pause hero video when tab is hidden -->
+    <script>
+        var heroVid = document.querySelector('.hero video');
+        if (heroVid) {
+            document.addEventListener('visibilitychange', function() { document.hidden ? heroVid.pause() : heroVid.play(); });
+        }
+    </script>
 </body>
 </html>
