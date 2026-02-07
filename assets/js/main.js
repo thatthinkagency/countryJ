@@ -2,6 +2,77 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ====================
+    // CUSTOM SUCCESS POPUP
+    // ====================
+    (function createPopupMarkup() {
+        // Inject CSS once
+        const style = document.createElement('style');
+        style.textContent = `
+            .cj-popup-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
+            .cj-popup-backdrop.show{opacity:1;pointer-events:auto}
+            .cj-popup{background:linear-gradient(145deg,#1a1a2e,#16213e);border:2px solid #d4af37;border-radius:16px;padding:2.5rem 2rem 2rem;max-width:420px;width:90%;text-align:center;transform:scale(.85);transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 40px rgba(212,175,55,.35)}
+            .cj-popup-backdrop.show .cj-popup{transform:scale(1)}
+            .cj-popup h2{font-family:'Helvetica Neue',Arial,sans-serif;color:#d4af37;font-size:1.8rem;font-weight:800;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:1px}
+            .cj-popup p{color:#f0e6d3;font-size:1.1rem;line-height:1.6;margin-bottom:1.5rem}
+            .cj-popup button{background:linear-gradient(45deg,#d4af37,#fdcb6e);border:none;border-radius:30px;color:#0f0f23;font-weight:700;font-size:1rem;padding:.65rem 2.5rem;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:box-shadow .2s}
+            .cj-popup button:hover{box-shadow:0 4px 18px rgba(212,175,55,.55)}
+        `;
+        document.head.appendChild(style);
+
+        // Inject HTML once
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <div class="cj-popup-backdrop" id="cjPopup">
+                <div class="cj-popup">
+                    <h2>Thanks Partner</h2>
+                    <p>Your Mail Has Been Delivered.</p>
+                    <button id="cjPopupClose">Got It</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(div.firstElementChild);
+
+        // Close handler
+        const backdrop = document.getElementById('cjPopup');
+        const closeBtn = document.getElementById('cjPopupClose');
+        closeBtn.addEventListener('click', function() { backdrop.classList.remove('show'); });
+        backdrop.addEventListener('click', function(e) { if (e.target === backdrop) backdrop.classList.remove('show'); });
+    })();
+
+    // Global function any page can call
+    window.showPartnerPopup = function() {
+        const popup = document.getElementById('cjPopup');
+        if (popup) popup.classList.add('show');
+    };
+
+    // ====================
+    // GO HIGH LEVEL (GHL) WEBHOOK
+    // ====================
+    const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/BGm5WYULqMrpuZ71ONr1/webhook-trigger/b5dbcc1e-1db5-4a7c-9657-09972a883ceb';
+
+    // Send contact data to GHL — fire-and-forget, never blocks the UI
+    window.sendToGHL = function(data) {
+        // Build payload with standard GHL contact fields
+        var payload = {};
+        if (data.email)   payload.email = data.email;
+        if (data.name)    payload.name = data.name;
+        if (data.firstName) payload.firstName = data.firstName;
+        if (data.lastName)  payload.lastName = data.lastName;
+        if (data.phone)   payload.phone = data.phone;
+        if (data.message) payload.message = data.message;
+        if (data.source)  payload.source = data.source;
+        if (data.tags)    payload.tags = data.tags;
+
+        // Fire-and-forget POST to GHL webhook
+        fetch(GHL_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            mode: 'no-cors' // GHL may not send CORS headers; no-cors ensures it fires
+        }).catch(function() { /* silent fail — email delivery is primary */ });
+    };
+
+    // ====================
     // LIGHTBOX FUNCTIONALITY
     // ====================
     class Lightbox {
@@ -197,11 +268,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Show loading state - FormSubmit will handle the actual submission
-            form.querySelector('button').disabled = true;
-            form.querySelector('button').innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Subscribing...';
+            // Prevent default so we can show popup, then submit via fetch
+            e.preventDefault();
 
-            // FormSubmit will handle the redirect and success messaging
+            // Show loading state
+            const btn = form.querySelector('button');
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Subscribing...';
+
+            // Send to GHL in parallel
+            window.sendToGHL({ email: email, source: 'Newsletter Signup', tags: ['newsletter', 'website'] });
+
+            // Submit to FormSubmit via fetch (no redirect)
+            const formData = new FormData(form);
+            fetch(form.action || 'https://formsubmit.co/officialcountryj@proton.me', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(function() {
+                window.showPartnerPopup();
+                form.reset();
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            }).catch(function() {
+                // Still show popup even if fetch had an issue (email usually still sends)
+                window.showPartnerPopup();
+                form.reset();
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            });
         }
 
         handleMembershipNewsletter(e) {
@@ -219,15 +315,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate membership form submission
-            form.querySelector('button').disabled = true;
-            form.querySelector('button').innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Joining...';
+            // Send to GHL
+            window.sendToGHL({ email: email, source: 'Membership Signup', tags: ['membership', 'inner-circle', 'website'] });
+
+            // Show loading state
+            const btn = form.querySelector('button');
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Joining...';
 
             setTimeout(() => {
-                this.showToast('Welcome to Country J\'s Inner Circle! Check your email for exclusive access and your first download.');
+                window.showPartnerPopup();
                 form.reset();
-                form.querySelector('button').disabled = false;
-                form.querySelector('button').innerHTML = '<i class="bi bi-envelope-fill me-2"></i>Sign Up';
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
             }, 1500);
         }
 
@@ -257,17 +358,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission
+            // Send to GHL with full contact details
+            var contactName = (form.querySelector('#contact-name') || {}).value || '';
+            var contactEmail = (email || {}).value || '';
+            var contactSubject = (form.querySelector('#contact-subject') || {}).value || '';
+            var contactMessage = (form.querySelector('#contact-message') || {}).value || '';
+            window.sendToGHL({
+                email: contactEmail,
+                name: contactName,
+                message: contactSubject + ': ' + contactMessage,
+                source: 'Contact Form',
+                tags: ['contact-form', 'website']
+            });
+
+            // Submit to FormSubmit
             const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending...';
 
-            setTimeout(() => {
-                this.showToast('Thanks for your message! We\'ll get back to you soon.');
+            var formData = new FormData(form);
+            fetch(form.action || 'https://formsubmit.co/officialcountryj@proton.me', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(function() {
+                window.showPartnerPopup();
                 form.reset();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Send Message';
-            }, 2000);
+            }).catch(function() {
+                window.showPartnerPopup();
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message';
+            });
         }
 
         handleBooking(e) {
@@ -296,17 +420,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission
+            // Send to GHL with booking details
+            var bookingName = (form.querySelector('#contact-name') || {}).value || '';
+            var bookingEmail = (email || {}).value || '';
+            var bookingPhone = (form.querySelector('#contact-phone') || {}).value || '';
+            var eventType = (form.querySelector('#event-type') || {}).value || '';
+            var eventDate = (form.querySelector('#event-date') || {}).value || '';
+            var venueName = (form.querySelector('#venue-name') || {}).value || '';
+            var cityState = (form.querySelector('#city-state') || {}).value || '';
+            var bookingNotes = (form.querySelector('#additional-notes') || {}).value || '';
+            window.sendToGHL({
+                email: bookingEmail,
+                name: bookingName,
+                phone: bookingPhone,
+                message: 'Booking: ' + eventType + ' | ' + eventDate + ' | ' + venueName + ', ' + cityState + ' | ' + bookingNotes,
+                source: 'Booking Request',
+                tags: ['booking-request', 'website']
+            });
+
+            // Submit to FormSubmit
             const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Submitting...';
 
-            setTimeout(() => {
-                this.showToast('Booking request submitted! We\'ll contact you within 24 hours.');
+            var formData = new FormData(form);
+            fetch('https://formsubmit.co/officialcountryj@proton.me', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(function() {
+                window.showPartnerPopup();
                 form.reset();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Submit Booking Request';
-            }, 2500);
+            }).catch(function() {
+                window.showPartnerPopup();
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Submit Booking Request';
+            });
         }
     }
 

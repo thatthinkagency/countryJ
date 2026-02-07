@@ -89,7 +89,7 @@
                         <span class="text-western-accent">With Country J</span>
                     </h1>
                     <p class="lead mb-4 fs-4">
-                        Have a question, want to share your story, or just want to say hello? We'd love to hear from you. Reach out to the Country J team.
+                        Have a question, want to share your story, or just want to say hello? Country J — born in Ann Arbor, raised in Buffalo — wants to hear from you. Reach out to the team.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         <a href="#contact-form" class="btn btn-primary btn-lg">
@@ -113,7 +113,7 @@
                         <div class="col-lg-6">
                             <h2 class="mb-4">Send Us a Message</h2>
                             <p class="lead mb-4 text-western-tan">
-                                Whether you're a fan, fellow musician, or just curious about Country J, we're here to connect. Drop us a line and we'll get back to you.
+                                Whether you're a fan, fellow musician, or just curious about Country J — a self-producing powerhouse born in Ann Arbor, raised in Buffalo — drop us a line and we'll get back to you.
                             </p>
 
                             <div class="mb-4">
@@ -373,7 +373,7 @@
                 <div class="col-lg-4">
                     <h5>About Country J</h5>
                     <p class="mb-4">
-                        Buffalo-based country artist bringing authentic honky-tonk music that tells real stories and touches real hearts.
+                        Self-producing powerhouse born in Ann Arbor, raised in Buffalo. Son of a preacher — Midwest heart meets Northeast hustle.
                     </p>
                     <div class="social-icons">
                         <a href="https://www.instagram.com/officialcountryj/" aria-label="Follow Country J on Instagram">
@@ -443,30 +443,18 @@
     <!-- Contact Form Success Handler -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for success parameter in URL
+            // Check for success parameter in URL — show popup
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('success') === 'true') {
-                // Show success message
-                alert('Thank you for your message! We\'ve received it and will get back to you within 48 hours.');
+                // Wait a tick for main.js popup to be created
+                setTimeout(function() {
+                    if (window.showPartnerPopup) window.showPartnerPopup();
+                }, 200);
 
                 // Clean up URL
                 const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
                 window.history.replaceState({}, document.title, cleanUrl);
             }
-
-            // Handle form submission with loading state
-            const contactForm = document.getElementById('contact-form');
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-
-            contactForm.addEventListener('submit', function(e) {
-                // Add loading state to button
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending...';
-                submitButton.disabled = true;
-
-                // Form will be submitted to FormSubmit automatically
-                // Success redirect is handled by FormSubmit's _next parameter
-            });
         });
     </script>
 

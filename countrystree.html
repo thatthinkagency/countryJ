@@ -25,19 +25,48 @@
     <meta name="twitter:description" content="Find all of Country J's social media and music platforms in one place.">
     <meta name="twitter:image" content="https://officialcountryj.com/assets/img/twitter-card.jpg">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
-    <link href="assets/css/styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <!-- Linktree-style CSS -->
     <style>
+        /* === RESET === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; width: 100%; overflow-x: hidden; }
+
+        /* === VIDEO BACKGROUND === */
+        #bg-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* === CSS VARIABLES (matching theme) === */
+        :root {
+            --western-gold: #d4af37;
+            --western-tan: #d2b48c;
+            --western-galaxy: rgba(108,92,231,0.4);
+            --western-nebula: rgba(162,155,254,0.6);
+            --western-text-light: #f8f8f2;
+        }
+
+        /* === CONTENT LAYER === */
         .linktree-container {
+            position: relative;
+            z-index: 1;
             max-width: 600px;
             margin: 0 auto;
             padding: 2rem 1rem;
         }
+
+        /* === PROFILE === */
         .linktree-profile {
             text-align: center;
             margin-bottom: 3rem;
@@ -51,6 +80,7 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
         .linktree-name {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             font-size: 2.5rem;
             font-weight: 900;
             color: var(--western-gold);
@@ -62,9 +92,11 @@
             font-size: 1.1rem;
             margin-bottom: 2rem;
         }
+
+        /* === LINK CARDS === */
         .linktree-link {
             display: block;
-            background: linear-gradient(135deg, rgba(26, 29, 41, 0.95), rgba(15, 15, 35, 0.95));
+            background: linear-gradient(135deg, rgba(26, 29, 41, 0.85), rgba(15, 15, 35, 0.85));
             border: 2px solid var(--western-galaxy);
             border-radius: 12px;
             padding: 1rem 1.5rem;
@@ -75,7 +107,8 @@
             font-size: 1.1rem;
             text-align: center;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
         }
         .linktree-link:hover {
@@ -88,11 +121,14 @@
             margin-right: 0.5rem;
             font-size: 1.2rem;
         }
+
+        /* === SECTIONS === */
         .linktree-section {
             margin-bottom: 2.5rem;
         }
         .linktree-section-title {
             color: var(--western-gold);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
@@ -100,11 +136,15 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
+        /* === FOOTER === */
         .linktree-footer {
             text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid var(--western-galaxy);
+            color: rgba(210,180,140,0.6);
+            font-size: 0.85rem;
         }
         .linktree-footer a {
             color: var(--western-tan);
@@ -116,16 +156,23 @@
         }
     </style>
 </head>
-<body class="bg-dark">
+<body>
+
+    <!-- VIDEO BACKGROUND — fixed, covers entire viewport -->
+    <video id="bg-video" autoplay muted loop playsinline preload="auto"
+           poster="assets/media/hero-country-j-live.jpg">
+        <source src="assets/media/space3.mp4" type="video/mp4">
+    </video>
+
     <!-- CountrysTree Content -->
     <div class="linktree-container">
         <!-- Profile Section -->
         <div class="linktree-profile">
-            <img src="21b473_899a49298b9b4451bff5f703e157a766~mv2.png"
-                 alt="Country J"
+            <img src="assets/media/1000015238.jpg"
+                 alt="Country J Logo"
                  class="linktree-avatar">
             <h1 class="linktree-name">Country J</h1>
-            <p class="linktree-bio">Authentic Country Music from Buffalo, New York</p>
+            <p class="linktree-bio">Born in Ann Arbor. Raised in Buffalo. Self-producing powerhouse. Son of a preacher.</p>
         </div>
 
         <!-- Country J Social Links -->
@@ -196,11 +243,17 @@
         <!-- Footer -->
         <div class="linktree-footer">
             <p>&copy; 2025 Country J. All rights reserved.</p>
-            <p><a href="https://officialcountryj.com/">← Back to Coming Soon</a></p>
+            <p><a href="index.html">← Back to Coming Soon</a></p>
         </div>
     </div>
 
     <!-- Bootstrap 5.3 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script>
+        // Pause video when tab is hidden to save resources
+        var v = document.getElementById('bg-video');
+        document.addEventListener('visibilitychange', function() { document.hidden ? v.pause() : v.play(); });
+    </script>
 </body>
 </html>
