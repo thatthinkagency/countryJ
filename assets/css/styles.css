@@ -886,6 +886,17 @@ h6 { font-size: 1rem; }
 }
 
 /* ============================================
+   CTA Section Styles
+   ============================================ */
+
+.cta-section {
+  background: linear-gradient(rgba(15, 15, 35, 0.8), rgba(45, 52, 54, 0.9));
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--western-galaxy);
+  border-bottom: 1px solid var(--western-galaxy);
+}
+
+/* ============================================
    Coming Soon Page Styles
    ============================================ */
 
