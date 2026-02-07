@@ -308,7 +308,112 @@
         // Pause video when tab is hidden
         var v = document.getElementById('bg-video');
         document.addEventListener('visibilitychange', function() { document.hidden ? v.pause() : v.play(); });
+
+        // "Email Us It's Fun" scroll popup — shows once when user scrolls near bottom
+        var emailPopupShown = sessionStorage.getItem('emailPopupShown');
+        window.addEventListener('scroll', function() {
+            if (emailPopupShown) return;
+            var scrollPos = window.innerHeight + window.scrollY;
+            var threshold = document.body.offsetHeight - 150;
+            if (scrollPos >= threshold) {
+                document.getElementById('emailFunPopup').classList.add('show');
+                emailPopupShown = true;
+                sessionStorage.setItem('emailPopupShown', 'true');
+            }
+        });
+        // Also trigger if page is short and user is already at the bottom on load
+        setTimeout(function() {
+            if (emailPopupShown) return;
+            var scrollPos = window.innerHeight + window.scrollY;
+            if (scrollPos >= document.body.offsetHeight - 150) {
+                document.getElementById('emailFunPopup').classList.add('show');
+                emailPopupShown = true;
+                sessionStorage.setItem('emailPopupShown', 'true');
+            }
+        }, 4000);
+
+        document.getElementById('emailFunClose').addEventListener('click', function() {
+            document.getElementById('emailFunPopup').classList.remove('show');
+        });
+        document.getElementById('emailFunPopup').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('show');
+        });
+        document.getElementById('emailFunGo').addEventListener('click', function() {
+            document.getElementById('emailFunPopup').classList.remove('show');
+            document.querySelector('.email-form input[type="email"]').focus();
+            document.querySelector('.email-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
     </script>
+
+    <!-- Email Us It's Fun Popup -->
+    <style>
+        .email-fun-backdrop {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 99998;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .email-fun-backdrop.show { opacity: 1; pointer-events: auto; }
+        .email-fun-box {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            max-width: 420px; width: 90%;
+            text-align: center;
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 50px rgba(212,175,55,0.35);
+            position: relative;
+        }
+        .email-fun-backdrop.show .email-fun-box { transform: scale(1) translateY(0); }
+        .email-fun-box .fun-icon {
+            font-size: 3rem; color: #d4af37;
+            margin-bottom: 0.75rem;
+            filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
+        }
+        .email-fun-box h2 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #d4af37; font-size: 1.8rem; font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .email-fun-box p {
+            color: #f0e6d3; font-size: 1.05rem;
+            line-height: 1.6; margin-bottom: 1.5rem;
+        }
+        .email-fun-box .fun-btn {
+            background: linear-gradient(45deg, #d4af37, #fdcb6e);
+            border: none; border-radius: 50px;
+            color: #0f0f23; font-weight: 700;
+            font-size: 1.1rem; padding: 0.85rem 2.5rem;
+            cursor: pointer; text-transform: uppercase;
+            letter-spacing: 1px; transition: all 0.3s ease;
+        }
+        .email-fun-box .fun-btn:hover {
+            box-shadow: 0 4px 20px rgba(212,175,55,0.55);
+            transform: scale(1.03);
+        }
+        .email-fun-box .fun-close {
+            position: absolute; top: 0.8rem; right: 1rem;
+            background: none; border: none;
+            color: rgba(210,180,140,0.6); font-size: 1.5rem;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .email-fun-box .fun-close:hover { color: #d4af37; }
+    </style>
+
+    <div class="email-fun-backdrop" id="emailFunPopup">
+        <div class="email-fun-box">
+            <button class="fun-close" id="emailFunClose">&times;</button>
+            <div class="fun-icon"><i class="bi bi-envelope-heart-fill"></i></div>
+            <h2>Email Us</h2>
+            <p>It's fun — stay in the loop on new music, shows, and exclusive drops. Be the first to know.</p>
+            <button class="fun-btn" id="emailFunGo"><i class="bi bi-arrow-up-circle-fill me-2"></i>Let's Go</button>
+        </div>
+    </div>
 
 </body>
 </html>
