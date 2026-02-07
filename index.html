@@ -120,8 +120,8 @@ CUSTOMIZATION NOTES:
     <!-- Video Background Hero Section -->
     <section class="video-hero" id="main-content">
         <!-- Video Background -->
-        <video autoplay muted loop playsinline class="video-background" id="heroVideo">
-            <source src="assets/media/space1.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline preload="auto" class="video-background" id="heroVideo" poster="assets/media/hero-country-j-live.jpg">
+            <source src="assets/media/space3.mp4" type="video/mp4">
             <!-- Fallback image if video doesn't load -->
             <div class="video-fallback" style="background-image: linear-gradient(rgba(15, 15, 35, 0.8), rgba(45, 52, 54, 0.9)), url('assets/media/hero-country-j-live.jpg');"></div>
         </video>
@@ -132,14 +132,15 @@ CUSTOMIZATION NOTES:
         <!-- Logo at Top -->
         <div class="logo-top-section">
             <div class="container">
-                <div class="row justify-content-center pt-5">
+                <div class="row justify-content-center pt-4">
                     <div class="col-auto">
-                        <img src="21b473_899a49298b9b4451bff5f703e157a766~mv2.png"
+                        <img src="assets/media/1000015238.jpg"
                              alt="Country J Logo"
                              class="img-fluid coming-soon-logo"
                              width="300"
                              height="300"
-                             loading="lazy">
+                             loading="eager"
+                             decoding="async">
                     </div>
                 </div>
             </div>
@@ -181,70 +182,13 @@ CUSTOMIZATION NOTES:
                         </form>
                     </div>
 
-                    <!-- Social Links -->
-                    <div class="social-links mb-5">
-                        <h4 class="h5 mb-4 text-western-tan">Follow Country J</h4>
-                        <div class="d-flex justify-content-center gap-3">
-                            <a href="https://www.instagram.com/officialcountryj/"
-                               class="social-btn"
-                               aria-label="Follow Country J on Instagram">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="https://tiktok.com/@countryj"
-                               class="social-btn"
-                               aria-label="Follow Country J on TikTok">
-                                <i class="bi bi-tiktok"></i>
-                            </a>
-                            <a href="https://youtube.com/countryj"
-                               class="social-btn"
-                               aria-label="Subscribe to Country J on YouTube">
-                                <i class="bi bi-youtube"></i>
-                            </a>
-                            <a href="https://open.spotify.com/artist/countryj"
-                               class="social-btn"
-                               aria-label="Listen to Country J on Spotify">
-                                <i class="bi bi-spotify"></i>
-                            </a>
-                            <a href="https://music.apple.com/artist/countryj"
-                               class="social-btn"
-                               aria-label="Listen to Country J on Apple Music">
-                                <i class="bi bi-music-note-beamed"></i>
-                            </a>
-                        </div>
-
-                        <h5 class="h6 mb-3 mt-4 text-western-tan text-center">Producer: JustJusBeatz</h5>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a href="https://www.instagram.com/justjusbeatz/"
-                               class="social-btn social-btn-small"
-                               aria-label="Follow JustJusBeatz on Instagram">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="https://www.facebook.com/JustJusBeatz/"
-                               class="social-btn social-btn-small"
-                               aria-label="Follow JustJusBeatz on Facebook">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="https://www.reverbnation.com/justjusbeatz"
-                               class="social-btn social-btn-small"
-                               aria-label="Listen to JustJusBeatz on ReverbNation">
-                                <i class="bi bi-music-note-list"></i>
-                            </a>
-                        </div>
+                    <!-- SEE ALL LINKS Button -->
+                    <div class="text-center mb-5">
+                        <a href="countrystree.html" class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="bi bi-link-45deg me-2"></i>SEE ALL LINKS
+                        </a>
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="cta-section py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <a href="countrystree.html" class="btn btn-outline-light btn-lg px-5 py-3">
-                        <i class="bi bi-link-45deg me-2"></i>SEE ALL LINKS
-                    </a>
                 </div>
             </div>
         </div>
@@ -256,17 +200,7 @@ CUSTOMIZATION NOTES:
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <h5 class="mb-3">Stay Connected</h5>
-                    <p class="mb-4">Get the latest updates on new releases and exclusive content.</p>
-
-                    <form action="https://formsubmit.co/officialcountryj@proton.me" method="POST" class="newsletter-form mb-3" id="newsletter-form">
-                        <input type="hidden" name="_subject" value="Newsletter Signup - Country J Website">
-                        <input type="hidden" name="_next" value="https://officialcountryj.com/?newsletter=success">
-                        <input type="text" name="_honey" style="display:none">
-                        <div class="input-group">
-                            <input type="email" name="email" class="form-control" placeholder="Enter your email" aria-label="Email address for newsletter" required>
-                            <button class="btn btn-primary" type="submit">Subscribe</button>
-                        </div>
-                    </form>
+                    <p class="mb-0">Get the latest updates on new releases and exclusive content by signing up to our email list above and check out the all links to hear the music.</p>
                 </div>
             </div>
 

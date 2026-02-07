@@ -24,6 +24,10 @@
 }
 
 /* Global Styles */
+html {
+  height: 100%;
+}
+
 body {
   background: transparent;
   color: var(--western-text-light);
@@ -31,6 +35,8 @@ body {
   line-height: 1.6;
   background-attachment: fixed;
   padding-top: 0; /* Remove padding since no navbar */
+  min-height: 100%;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -593,10 +599,10 @@ h6 { font-size: 1rem; }
 
 /* Footer */
 .footer {
-  background: linear-gradient(135deg, var(--western-cosmic) 0%, var(--western-dark) 100%);
+  background: transparent;
   color: var(--western-text-light);
   padding: 3rem 0 1rem;
-  border-top: 2px solid var(--western-galaxy);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: hidden;
 }
