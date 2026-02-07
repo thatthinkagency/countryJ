@@ -153,6 +153,273 @@
         </div>
     </section>
 
+    <!-- Featured Links Section -->
+    <section class="section" id="find-country-j">
+        <style>
+            /* Featured Link Cards */
+            .featured-link-card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+                text-decoration: none;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                min-height: 220px;
+            }
+            .featured-link-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                border-radius: 20px;
+                z-index: 0;
+            }
+            .featured-link-card:hover {
+                transform: translateY(-12px) scale(1.03);
+                box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+                text-decoration: none;
+            }
+            .featured-link-card:hover::before {
+                opacity: 1;
+            }
+            .featured-link-card .card-icon {
+                font-size: 3.5rem;
+                margin-bottom: 1rem;
+                transition: all 0.4s ease;
+                position: relative;
+                z-index: 1;
+            }
+            .featured-link-card:hover .card-icon {
+                transform: scale(1.2);
+                filter: drop-shadow(0 0 20px currentColor);
+            }
+            .featured-link-card .card-label {
+                font-size: 1.25rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                position: relative;
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+            .featured-link-card .card-sub {
+                font-size: 0.85rem;
+                opacity: 0.7;
+                margin-top: 0.4rem;
+                position: relative;
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+            .featured-link-card:hover .card-sub {
+                opacity: 1;
+            }
+            .featured-link-card .card-arrow {
+                position: absolute;
+                bottom: 1.2rem;
+                right: 1.2rem;
+                font-size: 1.2rem;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+                z-index: 1;
+            }
+            .featured-link-card:hover .card-arrow {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Spotify */
+            .link-spotify {
+                background: linear-gradient(135deg, rgba(30,215,96,0.1), rgba(30,215,96,0.05));
+                border: 1px solid rgba(30,215,96,0.2);
+                color: #1ed760;
+            }
+            .link-spotify::before { background: linear-gradient(135deg, rgba(30,215,96,0.2), rgba(30,215,96,0.08)); }
+            .link-spotify:hover { border-color: rgba(30,215,96,0.6); color: #1ed760; box-shadow: 0 20px 60px rgba(30,215,96,0.2); }
+
+            /* Apple Music */
+            .link-apple {
+                background: linear-gradient(135deg, rgba(252,60,68,0.1), rgba(168,36,191,0.08));
+                border: 1px solid rgba(252,60,68,0.2);
+                color: #fc3c44;
+            }
+            .link-apple::before { background: linear-gradient(135deg, rgba(252,60,68,0.2), rgba(168,36,191,0.15)); }
+            .link-apple:hover { border-color: rgba(252,60,68,0.6); color: #fc3c44; box-shadow: 0 20px 60px rgba(252,60,68,0.2); }
+
+            /* YouTube */
+            .link-youtube {
+                background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,0,0,0.05));
+                border: 1px solid rgba(255,0,0,0.2);
+                color: #ff0000;
+            }
+            .link-youtube::before { background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(255,0,0,0.08)); }
+            .link-youtube:hover { border-color: rgba(255,0,0,0.6); color: #ff0000; box-shadow: 0 20px 60px rgba(255,0,0,0.2); }
+
+            /* TikTok */
+            .link-tiktok {
+                background: linear-gradient(135deg, rgba(0,242,234,0.1), rgba(255,0,80,0.05));
+                border: 1px solid rgba(0,242,234,0.2);
+                color: #00f2ea;
+            }
+            .link-tiktok::before { background: linear-gradient(135deg, rgba(0,242,234,0.2), rgba(255,0,80,0.1)); }
+            .link-tiktok:hover { border-color: rgba(0,242,234,0.6); color: #00f2ea; box-shadow: 0 20px 60px rgba(0,242,234,0.2); }
+
+            /* Instagram */
+            .link-instagram {
+                background: linear-gradient(135deg, rgba(225,48,108,0.1), rgba(131,58,180,0.08));
+                border: 1px solid rgba(225,48,108,0.2);
+                color: #e1306c;
+            }
+            .link-instagram::before { background: linear-gradient(135deg, rgba(225,48,108,0.2), rgba(131,58,180,0.15)); }
+            .link-instagram:hover { border-color: rgba(225,48,108,0.6); color: #e1306c; box-shadow: 0 20px 60px rgba(225,48,108,0.2); }
+
+            /* Intergalactic Video */
+            .link-video {
+                background: linear-gradient(135deg, rgba(108,92,231,0.12), rgba(212,175,55,0.08));
+                border: 1px solid rgba(212,175,55,0.25);
+                color: var(--western-gold);
+            }
+            .link-video::before { background: linear-gradient(135deg, rgba(108,92,231,0.2), rgba(212,175,55,0.15)); }
+            .link-video:hover { border-color: rgba(212,175,55,0.6); color: var(--western-gold); box-shadow: 0 20px 60px rgba(212,175,55,0.25); }
+
+            /* Linktree */
+            .link-linktree {
+                background: linear-gradient(135deg, rgba(67,233,123,0.1), rgba(67,233,123,0.05));
+                border: 1px solid rgba(67,233,123,0.2);
+                color: #43e97b;
+            }
+            .link-linktree::before { background: linear-gradient(135deg, rgba(67,233,123,0.2), rgba(67,233,123,0.08)); }
+            .link-linktree:hover { border-color: rgba(67,233,123,0.6); color: #43e97b; box-shadow: 0 20px 60px rgba(67,233,123,0.2); }
+
+            /* Book Now */
+            .link-book {
+                background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(255,193,7,0.05));
+                border: 1px solid rgba(212,175,55,0.25);
+                color: var(--western-gold);
+            }
+            .link-book::before { background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(255,193,7,0.12)); }
+            .link-book:hover { border-color: rgba(212,175,55,0.7); color: var(--western-gold); box-shadow: 0 20px 60px rgba(212,175,55,0.3); }
+
+            /* Pulse glow on hover for all cards */
+            @keyframes pulseGlow {
+                0%, 100% { box-shadow: 0 0 15px rgba(212,175,55,0.1); }
+                50% { box-shadow: 0 0 30px rgba(212,175,55,0.25); }
+            }
+            .featured-link-card:hover {
+                animation: pulseGlow 2s ease-in-out infinite;
+            }
+
+            /* Section heading shimmer */
+            .shimmer-text {
+                background: linear-gradient(90deg, var(--western-gold) 0%, #fff 40%, var(--western-gold) 80%);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: shimmer 3s linear infinite;
+            }
+            @keyframes shimmer {
+                to { background-position: 200% center; }
+            }
+        </style>
+
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold shimmer-text">Find Country J Everywhere</h2>
+                <p class="lead" style="color: rgba(255,255,255,0.7);">Stream, follow, watch, and connect — all in one place</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Spotify -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="https://open.spotify.com/artist/7gwIq8Z4ayntYt5nPseSJK?si=ncf05a5ZTRiWX020GOOajA" class="featured-link-card link-spotify" target="_blank" rel="noopener">
+                        <div class="card-icon"><i class="bi bi-spotify"></i></div>
+                        <div class="card-label">Spotify</div>
+                        <div class="card-sub">Stream the full catalog</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <!-- Apple Music -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="https://music.apple.com/us/album/whole-lotta-money-single/1806060093" class="featured-link-card link-apple" target="_blank" rel="noopener">
+                        <div class="card-icon"><i class="bi bi-apple"></i></div>
+                        <div class="card-label">Apple Music</div>
+                        <div class="card-sub">Listen on Apple Music</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <!-- YouTube -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="https://www.youtube.com/@CountryJWorld/videos" class="featured-link-card link-youtube" target="_blank" rel="noopener">
+                        <div class="card-icon"><i class="bi bi-youtube"></i></div>
+                        <div class="card-label">YouTube</div>
+                        <div class="card-sub">Brand new account — come support</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <!-- TikTok -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="https://www.tiktok.com/@justjusbeatz?_r=1&_t=ZT-93KgvtCmwdK" class="featured-link-card link-tiktok" target="_blank" rel="noopener">
+                        <div class="card-icon"><i class="bi bi-tiktok"></i></div>
+                        <div class="card-label">TikTok</div>
+                        <div class="card-sub">Behind the scenes & clips</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <!-- Instagram -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="https://www.instagram.com/officialcountryj/" class="featured-link-card link-instagram" target="_blank" rel="noopener">
+                        <div class="card-icon"><i class="bi bi-instagram"></i></div>
+                        <div class="card-label">Instagram</div>
+                        <div class="card-sub">@officialcountryj</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <!-- Intergalactic Video -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="https://www.youtube.com/watch?v=VeuwzbTN4wo" class="featured-link-card link-video" target="_blank" rel="noopener">
+                        <div class="card-icon"><i class="bi bi-stars"></i></div>
+                        <div class="card-label">"Intergalactic" Video</div>
+                        <div class="card-sub">Watch the new single now</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Linktree + Book Now -->
+            <div class="row g-4 mt-2 justify-content-center">
+                <!-- Linktree -->
+                <div class="col-md-6 col-lg-5">
+                    <a href="countrystree.html" class="featured-link-card link-linktree">
+                        <div class="card-icon"><i class="bi bi-link-45deg"></i></div>
+                        <div class="card-label">All Links</div>
+                        <div class="card-sub">One page, every platform</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <!-- Book Country J -->
+                <div class="col-md-6 col-lg-5">
+                    <a href="bookings.html" class="featured-link-card link-book">
+                        <div class="card-icon"><i class="bi bi-calendar-star"></i></div>
+                        <div class="card-label">Book Country J</div>
+                        <div class="card-sub">Live shows, events & private bookings</div>
+                        <div class="card-arrow"><i class="bi bi-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">

@@ -222,7 +222,7 @@ CUSTOMIZATION NOTES:
 
                 <!-- Tour & Booking Slide -->
                 <div class="carousel-item">
-                    <div class="hero-slide" style="background-image: url('assets/media/LogoStyles/Mainhero2.png');">
+                    <div class="hero-slide" style="background-image: url('assets/media/hero-country-j-slider3.png');">
                         <div class="container">
                             <div class="row align-items-center min-vh-100">
                                 <div class="col-lg-8">
@@ -234,13 +234,10 @@ CUSTOMIZATION NOTES:
                                         From private events to major festivals, bring Country J's authentic country sound to your audience. Professional performances for every occasion.
                                     </p>
                                     <div class="d-flex flex-column flex-sm-row gap-3">
-                                        <a href="bookings.html" class="btn btn-primary btn-lg px-5 py-3">
-                                            <i class="bi bi-calendar-event me-2"></i>Book Now
+                                        <a href="bookings.html#booking-section" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-envelope-fill me-2"></i>Contact
                                         </a>
-                                        <a href="tour.html" class="btn btn-outline-light btn-lg px-5 py-3">
-                                            <i class="bi bi-geo-alt me-2"></i>Tour Schedule
-                                        </a>
-                                        <a href="treelink.html" class="btn btn-outline-light btn-lg px-5 py-3">
+                                        <a href="countrystree.html" class="btn btn-outline-light btn-lg px-5 py-3">
                                             <i class="bi bi-link-45deg me-2"></i>ALL Links
                                         </a>
                                     </div>
@@ -271,149 +268,186 @@ CUSTOMIZATION NOTES:
     </section>
 
     <!-- Latest Release Section -->
-    <section class="section section-dark">
+    <section class="section section-dark" id="latest-release">
+        <style>
+            .release-featured-card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 3.5rem 2rem;
+                border-radius: 24px;
+                text-decoration: none;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(255,193,7,0.04));
+                border: 2px solid rgba(212,175,55,0.25);
+            }
+            .release-featured-card .bg-video {
+                position: absolute;
+                top: 50%; left: 50%;
+                min-width: 100%; min-height: 100%;
+                width: auto; height: auto;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+                opacity: 0.9;
+                transition: opacity 0.6s ease;
+                object-fit: cover;
+                pointer-events: none;
+            }
+            .release-featured-card:hover .bg-video {
+                opacity: 1;
+            }
+            .release-featured-card .bg-video-overlay {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: linear-gradient(135deg, rgba(10,15,30,0.35), rgba(20,15,5,0.3));
+                z-index: 0;
+                border-radius: 24px;
+                transition: background 0.4s ease;
+            }
+            .release-featured-card:hover .bg-video-overlay {
+                background: linear-gradient(135deg, rgba(10,15,30,0.2), rgba(20,15,5,0.15));
+            }
+            .release-featured-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(255,215,0,0.1));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                border-radius: 24px;
+                z-index: 1;
+            }
+            .release-featured-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                border-color: rgba(212,175,55,0.7);
+                box-shadow: 0 25px 70px rgba(212,175,55,0.3);
+                text-decoration: none;
+            }
+            .release-featured-card:hover::before {
+                opacity: 1;
+            }
+            .release-featured-card .release-icon {
+                font-size: 5rem;
+                color: var(--western-gold);
+                margin-bottom: 1.5rem;
+                transition: all 0.4s ease;
+                position: relative;
+                z-index: 2;
+                filter: drop-shadow(0 0 10px rgba(212,175,55,0.3));
+            }
+            .release-featured-card:hover .release-icon {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 30px rgba(212,175,55,0.6));
+            }
+            .release-featured-card .release-title {
+                font-size: 2.2rem;
+                font-weight: 800;
+                color: var(--western-gold);
+                position: relative;
+                z-index: 2;
+                margin-bottom: 0.5rem;
+                text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            }
+            .release-featured-card .release-subtitle {
+                font-size: 1.1rem;
+                color: rgba(255,255,255,0.9);
+                position: relative;
+                z-index: 2;
+                margin-bottom: 1.5rem;
+                text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+            }
+            .release-featured-card .release-desc {
+                font-size: 1.05rem;
+                color: rgba(255,255,255,0.8);
+                max-width: 600px;
+                line-height: 1.7;
+                position: relative;
+                z-index: 2;
+                margin-bottom: 2rem;
+                text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+            }
+            .release-featured-card:hover .release-desc {
+                color: rgba(255,255,255,0.9);
+            }
+            .release-featured-card .release-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem 2.5rem;
+                font-size: 1.2rem;
+                font-weight: 700;
+                background: linear-gradient(45deg, var(--western-gold), #ffd700);
+                color: var(--western-text-dark);
+                border-radius: 50px;
+                border: none;
+                box-shadow: 0 4px 25px rgba(212,175,55,0.4);
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 2;
+            }
+            .release-featured-card:hover .release-btn {
+                transform: scale(1.05);
+                box-shadow: 0 8px 35px rgba(212,175,55,0.6);
+            }
+            .release-featured-card .release-arrow {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                font-size: 1.5rem;
+                color: var(--western-gold);
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+                z-index: 2;
+            }
+            .release-featured-card:hover .release-arrow {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            @keyframes goldPulse {
+                0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.15); }
+                50% { box-shadow: 0 0 40px rgba(212,175,55,0.35); }
+            }
+            .release-featured-card:hover {
+                animation: goldPulse 2s ease-in-out infinite;
+            }
+        </style>
+
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="release-card position-relative">
-                        <img src="assets/media/hero-country-j-music.jpg" alt="Honky Tonk Heart - Latest Album by Country J" class="img-fluid rounded" width="400" height="400" loading="lazy">
-                        <div class="release-overlay p-4">
-                            <h3 class="h2 mb-3">Honky Tonk Heart</h3>
-                            <p class="mb-4">The latest collection of raw, heartfelt country anthems that capture the essence of the American dream and the pain of love lost.</p>
-                            <div class="d-flex gap-2 flex-wrap">
-                                <a href="https://open.spotify.com/artist/7gwIq8Z4ayntYt5nPseSJK?si=ncf05a5ZTRiWX020GOOajA" target="_blank" rel="noopener" class="streaming-btn" aria-label="Listen on Spotify">
-                                    <i class="bi bi-spotify" aria-hidden="true"></i>
-                                </a>
-                                <a href="https://music.apple.com/us/album/whole-lotta-money-single/1806060093" target="_blank" rel="noopener" class="streaming-btn" aria-label="Listen on Apple Music">
-                                    <i class="bi bi-apple" aria-hidden="true"></i>
-                                </a>
-                                <a href="https://www.youtube.com/@CountryJWorld/videos" target="_blank" rel="noopener" class="streaming-btn" aria-label="Listen on YouTube">
-                                    <i class="bi bi-youtube" aria-hidden="true"></i>
-                                </a>
-                                <a href="treelink.html" class="streaming-btn" aria-label="More links">
-                                    <i class="bi bi-amazon" aria-hidden="true"></i>
-                                </a>
-                            </div>
+            <div class="text-center mb-5">
+                <h2>Latest Release</h2>
+                <p class="lead text-western-tan">The newest single from Country J — out now</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <a href="https://www.youtube.com/watch?v=VeuwzbTN4wo" class="release-featured-card" target="_blank" rel="noopener">
+                        <video class="bg-video" autoplay muted loop playsinline>
+                            <source src="assets/media/moonman.mov" type="video/quicktime">
+                            <source src="assets/media/moonman.mov" type="video/mp4">
+                        </video>
+                        <div class="bg-video-overlay"></div>
+                        <div class="release-arrow"><i class="bi bi-arrow-right"></i></div>
+                        <div class="release-icon"><i class="bi bi-stars"></i></div>
+                        <div class="release-title">"Intergalactic"</div>
+                        <div class="release-subtitle">The New Single by Country J</div>
+                        <div class="release-desc text-center">
+                            A genre-bending anthem made from scratch — every beat, every lyric, every layer built from the ground up. Country soul meets cosmic energy, Midwest heart meets intergalactic vision. This is Country J at his boldest.
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="mb-4">Latest Release</h2>
-                    <p class="lead mb-4">
-                        "Honky Tonk Heart" marks a new chapter in Country J's journey, featuring 10 tracks that blend traditional country roots with modern storytelling.
-                    </p>
-                    <div class="row g-3 mb-4">
-                        <div class="col-6">
-                            <div class="text-center">
-                                <div class="h4 mb-1 text-western-gold">#1</div>
-                                <small class="text-western-tan">Country Digital Sales</small>
-                            </div>
+                        <div class="release-btn">
+                            <i class="bi bi-play-circle-fill"></i> WATCH NOW ON YOUTUBE
                         </div>
-                        <div class="col-6">
-                            <div class="text-center">
-                                <div class="h4 mb-1 text-western-gold">2M+</div>
-                                <small class="text-western-tan">Streams This Month</small>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="music.html" class="btn btn-primary btn-lg">
-                        <i class="bi bi-music-note-list me-2"></i>Explore Full Discography
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Upcoming Dates Section -->
-    <section class="section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>Upcoming Dates</h2>
-                <p class="lead text-western-tan">Catch Country J live - from intimate original, new, and unique venues to major festivals</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="tour-item" data-date="2025-03-15">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="tour-date">Mar 15, 2025</div>
-                                <div class="tour-venue">The Bluebird Café</div>
-                                <div class="tour-location">Buffalo, NY</div>
-                            </div>
-                            <a href="bookings.html" class="btn btn-outline-primary btn-sm">Tickets</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="tour-item" data-date="2025-04-22">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="tour-date">Apr 22, 2025</div>
-                                <div class="tour-venue">Austin City Limits</div>
-                                <div class="tour-location">Austin, TX</div>
-                            </div>
-                            <a href="bookings.html" class="btn btn-outline-primary btn-sm">Tickets</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="tour-item" data-date="2025-05-10">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="tour-date">May 10, 2025</div>
-                                <div class="tour-venue">Red Rocks Amphitheatre</div>
-                                <div class="tour-location">Morrison, CO</div>
-                            </div>
-                            <a href="bookings.html" class="btn btn-outline-primary btn-sm">Tickets</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="tour.html" class="btn btn-primary btn-lg">
-                    <i class="bi bi-calendar-event me-2"></i>View Full Tour Schedule
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured In Section -->
-    <section class="section section-accent">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>As Featured In</h2>
-                <p class="text-western-tan">Country J has been honored to appear in these prestigious publications and media outlets</p>
-            </div>
-
-            <div class="row g-4 justify-content-center">
-                <div class="col-6 col-md-3">
-                    <div class="text-center">
-                        <img src="assets/img/press-rolling-stone.jpg" alt="Rolling Stone Magazine" class="img-fluid mb-3" width="120" height="60" loading="lazy">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="text-center">
-                        <img src="assets/img/press-billboard.jpg" alt="Billboard Magazine" class="img-fluid mb-3" width="120" height="60" loading="lazy">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="text-center">
-                        <img src="assets/img/press-cmt.jpg" alt="CMT Network" class="img-fluid mb-3" width="120" height="60" loading="lazy">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="text-center">
-                        <img src="assets/img/press-nashville.jpg" alt="Buffalo Music Review" class="img-fluid mb-3" width="120" height="60" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Fan Reviews Carousel -->
-    <section class="section section-dark">
+    <section class="section" style="background: linear-gradient(135deg, #1a2a3a 0%, #243447 50%, #1e2f42 100%);">
         <div class="container">
             <div class="text-center mb-5">
                 <h2>Fan Reviews</h2>
@@ -489,6 +523,52 @@ CUSTOMIZATION NOTES:
                     <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Second review"></button>
                     <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Third review"></button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Dates Section -->
+    <section class="section" style="background: linear-gradient(135deg, #1e2d40 0%, #2a3d54 50%, #233448 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Dates To Be Announced</h2>
+                <p class="lead text-western-tan">Catch Country J live - from intimate venues to major festivals</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="tour-item">
+                        <div>
+                            <div class="tour-date">TBA</div>
+                            <div class="tour-venue">Florida</div>
+                            <div class="tour-location">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour-item">
+                        <div>
+                            <div class="tour-date">TBA</div>
+                            <div class="tour-venue">New York</div>
+                            <div class="tour-location">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour-item">
+                        <div>
+                            <div class="tour-date">TBA</div>
+                            <div class="tour-venue">Texas</div>
+                            <div class="tour-location">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="bookings.html#booking-section" class="btn btn-primary btn-lg">
+                    <i class="bi bi-envelope-fill me-2"></i>Contact Us
+                </a>
             </div>
         </div>
     </section>
