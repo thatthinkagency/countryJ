@@ -24,8 +24,10 @@
 }
 
 /* Global Styles */
-html {
+html,
+body {
   height: 100%;
+  background: transparent;
 }
 
 body {
@@ -37,6 +39,7 @@ body {
   padding-top: 0; /* Remove padding since no navbar */
   min-height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -829,15 +832,21 @@ h6 { font-size: 1rem; }
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  z-index: 2;
 }
 
-.logo-top-section {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
+.logo-inline img {
+  max-width: 240px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.hero-content {
+  min-height: 100vh;
+  align-items: center;
   padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .video-background {
@@ -847,7 +856,9 @@ h6 { font-size: 1rem; }
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -2;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #000;
   /* Enhanced video quality and performance */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
@@ -864,8 +875,9 @@ h6 { font-size: 1rem; }
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(rgba(15, 15, 35, 0.1), rgba(45, 52, 54, 0.2));
-  z-index: -1;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Mobile video optimization */
@@ -876,13 +888,18 @@ h6 { font-size: 1rem; }
     height: 100vh;
   }
 
-  .logo-top-section {
-    padding-top: 1rem;
-  }
-
   .coming-soon-logo {
     width: 200px !important;
     height: 200px !important;
+  }
+
+  .logo-inline img {
+    max-width: 200px;
+  }
+
+  .hero-content {
+    padding-top: 1.5rem;
+    min-height: 100vh;
   }
 }
 
