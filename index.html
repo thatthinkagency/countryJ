@@ -28,6 +28,10 @@
         /* === RESET === */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { height: 100%; width: 100%; overflow-x: hidden; }
+        :root { --alien-cursor: url('assets/img/alien-cursor.svg') 16 16; }
+        body { cursor: var(--alien-cursor), auto; }
+        a, button, .cta-btn, .email-form .btn { cursor: var(--alien-cursor), pointer; }
+        input, textarea, select { cursor: var(--alien-cursor), text; }
 
         /* === VIDEO BACKGROUND === */
         #bg-video {
@@ -261,87 +265,121 @@
     </div>
 
     <script>
-        // Popup helpers
-        function showPartnerPopup() { document.getElementById('cjPopup').classList.add('show'); }
-        document.getElementById('cjPopupClose').addEventListener('click', function() { document.getElementById('cjPopup').classList.remove('show'); });
-        document.getElementById('cjPopup').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Popup helpers
+            function showPartnerPopup() {
+                var cjPopup = document.getElementById('cjPopup');
+                if (cjPopup) cjPopup.classList.add('show');
+            }
+            var cjPopupClose = document.getElementById('cjPopupClose');
+            var cjPopup = document.getElementById('cjPopup');
+            if (cjPopupClose) {
+                cjPopupClose.addEventListener('click', function() {
+                    if (cjPopup) cjPopup.classList.remove('show');
+                });
+            }
+            if (cjPopup) {
+                cjPopup.addEventListener('click', function(e) {
+                    if (e.target === this) this.classList.remove('show');
+                });
+            }
 
-        // If redirected back after FormSubmit success, show popup
-        var p = new URLSearchParams(window.location.search);
-        if (p.get('newsletter') === 'success') {
-            showPartnerPopup();
-            history.replaceState({}, '', window.location.pathname);
-        }
+            // If redirected back after FormSubmit success, show popup
+            var p = new URLSearchParams(window.location.search);
+            if (p.get('newsletter') === 'success') {
+                showPartnerPopup();
+                history.replaceState({}, '', window.location.pathname);
+            }
 
-        // GHL Webhook — fire-and-forget contact to GoHighLevel
-        var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/BGm5WYULqMrpuZ71ONr1/webhook-trigger/b5dbcc1e-1db5-4a7c-9657-09972a883ceb';
-        function sendToGHL(data) {
-            fetch(GHL_WEBHOOK, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-                mode: 'no-cors'
-            }).catch(function(){});
-        }
+            // GHL Webhook — fire-and-forget contact to GoHighLevel
+            var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/BGm5WYULqMrpuZ71ONr1/webhook-trigger/b5dbcc1e-1db5-4a7c-9657-09972a883ceb';
+            function sendToGHL(data) {
+                fetch(GHL_WEBHOOK, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                    mode: 'no-cors'
+                }).catch(function(){});
+            }
 
-        // Also intercept the form submit to show popup without redirect
-        document.querySelector('.email-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var form = this;
-            var email = form.querySelector('input[type="email"]').value.trim();
-            if (!email) return;
+            // Also intercept the form submit to show popup without redirect
+            var emailForm = document.querySelector('.email-form');
+            if (emailForm) {
+                emailForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var form = this;
+                    var email = form.querySelector('input[type="email"]').value.trim();
+                    if (!email) return;
 
-            // Send to GHL
-            sendToGHL({ email: email, source: 'Coming Soon Signup', tags: ['coming-soon', 'newsletter', 'website'] });
+                    // Send to GHL
+                    sendToGHL({ email: email, source: 'Coming Soon Signup', tags: ['coming-soon', 'newsletter', 'website'] });
 
-            var btn = form.querySelector('button');
-            var origHTML = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending...';
+                    var btn = form.querySelector('button');
+                    var origHTML = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending...';
 
-            var fd = new FormData(form);
-            fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} })
-            .then(function(){ showPartnerPopup(); form.reset(); btn.disabled=false; btn.innerHTML=origHTML; })
-            .catch(function(){ showPartnerPopup(); form.reset(); btn.disabled=false; btn.innerHTML=origHTML; });
-        });
+                    var fd = new FormData(form);
+                    fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} })
+                    .then(function(){ showPartnerPopup(); form.reset(); btn.disabled=false; btn.innerHTML=origHTML; })
+                    .catch(function(){ showPartnerPopup(); form.reset(); btn.disabled=false; btn.innerHTML=origHTML; });
+                });
+            }
 
-        // Pause video when tab is hidden
-        var v = document.getElementById('bg-video');
-        document.addEventListener('visibilitychange', function() { document.hidden ? v.pause() : v.play(); });
+            // Pause video when tab is hidden
+            var v = document.getElementById('bg-video');
+            if (v) {
+                document.addEventListener('visibilitychange', function() { document.hidden ? v.pause() : v.play(); });
+            }
 
-        // "Email Us It's Fun" scroll popup — shows once when user scrolls near bottom
-        var emailPopupShown = sessionStorage.getItem('emailPopupShown');
-        window.addEventListener('scroll', function() {
-            if (emailPopupShown) return;
-            var scrollPos = window.innerHeight + window.scrollY;
-            var threshold = document.body.offsetHeight - 150;
-            if (scrollPos >= threshold) {
-                document.getElementById('emailFunPopup').classList.add('show');
+            // "Email Us It's Fun" scroll popup — shows once when user scrolls near bottom
+            var emailFunPopup = document.getElementById('emailFunPopup');
+            var emailFunClose = document.getElementById('emailFunClose');
+            var emailFunGo = document.getElementById('emailFunGo');
+            var emailPopupShown = sessionStorage.getItem('emailPopupShown');
+
+            function showEmailFunPopup() {
+                if (!emailFunPopup || emailPopupShown) return;
+                emailFunPopup.classList.add('show');
                 emailPopupShown = true;
                 sessionStorage.setItem('emailPopupShown', 'true');
             }
-        });
-        // Also trigger if page is short and user is already at the bottom on load
-        setTimeout(function() {
-            if (emailPopupShown) return;
-            var scrollPos = window.innerHeight + window.scrollY;
-            if (scrollPos >= document.body.offsetHeight - 150) {
-                document.getElementById('emailFunPopup').classList.add('show');
-                emailPopupShown = true;
-                sessionStorage.setItem('emailPopupShown', 'true');
-            }
-        }, 4000);
 
-        document.getElementById('emailFunClose').addEventListener('click', function() {
-            document.getElementById('emailFunPopup').classList.remove('show');
-        });
-        document.getElementById('emailFunPopup').addEventListener('click', function(e) {
-            if (e.target === this) this.classList.remove('show');
-        });
-        document.getElementById('emailFunGo').addEventListener('click', function() {
-            document.getElementById('emailFunPopup').classList.remove('show');
-            document.querySelector('.email-form input[type="email"]').focus();
-            document.querySelector('.email-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            window.addEventListener('scroll', function() {
+                if (emailPopupShown) return;
+                var scrollPos = window.innerHeight + window.scrollY;
+                var threshold = document.body.offsetHeight - 150;
+                if (scrollPos >= threshold) {
+                    showEmailFunPopup();
+                }
+            });
+            // Also trigger if page is short and user is already at the bottom on load
+            setTimeout(function() {
+                if (emailPopupShown) return;
+                var scrollPos = window.innerHeight + window.scrollY;
+                if (scrollPos >= document.body.offsetHeight - 150) {
+                    showEmailFunPopup();
+                }
+            }, 4000);
+
+            if (emailFunClose) {
+                emailFunClose.addEventListener('click', function() {
+                    if (emailFunPopup) emailFunPopup.classList.remove('show');
+                });
+            }
+            if (emailFunPopup) {
+                emailFunPopup.addEventListener('click', function(e) {
+                    if (e.target === this) this.classList.remove('show');
+                });
+            }
+            if (emailFunGo && emailForm) {
+                emailFunGo.addEventListener('click', function() {
+                    if (emailFunPopup) emailFunPopup.classList.remove('show');
+                    emailForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    var emailInput = emailForm.querySelector('input[type="email"]');
+                    if (emailInput) emailInput.focus();
+                });
+            }
         });
     </script>
 

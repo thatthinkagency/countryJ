@@ -21,6 +21,7 @@
   --western-nebula: #a29bfe;
   --western-star: #fdcb6e;
   --western-cosmic: #2d3436;
+  --alien-cursor: url('../img/alien-cursor.svg') 16 16;
 }
 
 /* Global Styles */
@@ -40,6 +41,23 @@ body {
   min-height: 100%;
   margin: 0;
   overflow-x: hidden;
+  cursor: var(--alien-cursor), auto;
+}
+
+a,
+button,
+.btn,
+.nav-link,
+.streaming-btn,
+.linktree-link,
+[role="button"] {
+  cursor: var(--alien-cursor), pointer;
+}
+
+input,
+textarea,
+select {
+  cursor: var(--alien-cursor), text;
 }
 
 h1, h2, h3, h4, h5, h6 {

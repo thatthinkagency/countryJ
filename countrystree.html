@@ -38,6 +38,10 @@
         /* === RESET === */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { height: 100%; width: 100%; overflow-x: hidden; }
+        :root { --alien-cursor: url('assets/img/alien-cursor.svg') 16 16; }
+        body { cursor: var(--alien-cursor), auto; }
+        a, button, .linktree-link { cursor: var(--alien-cursor), pointer; }
+        input, textarea, select { cursor: var(--alien-cursor), text; }
 
         /* === VIDEO BACKGROUND === */
         #bg-video {
@@ -243,7 +247,7 @@
         <!-- Footer -->
         <div class="linktree-footer">
             <p>&copy; 2026 Country J. All rights reserved.</p>
-            <p><a href="oldindex.html">← Back to Coming Soon</a></p>
+            <p><a href="index.html">← Back to Coming Soon</a></p>
         </div>
     </div>
 
