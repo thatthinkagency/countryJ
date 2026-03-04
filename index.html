@@ -1,457 +1,647 @@
+<!--
+Country J - Official Website
+===========================
+
+QUICK START:
+1. Open this file (index.html) directly in your browser to view the site locally
+2. All files are static and ready to deploy
+
+DEPLOYMENT TO GITHUB PAGES:
+1. Create a new GitHub repository
+2. Upload all files from this folder to the repository
+3. Go to repository Settings > Pages
+4. Set Source to "Deploy from a branch" and select "main" branch
+5. The site will be live at https://yourusername.github.io/repository-name/
+
+DOMAIN CHANGE:
+- Update the canonical URLs in all HTML files from https://countryjmusic.com/ to your actual domain
+- Update social media links and any hardcoded URLs as needed
+- For custom domain: Add a CNAME file to the repository root with your domain name
+
+CUSTOMIZATION NOTES:
+- Images have been added to assets/media/ folder and integrated throughout the site
+- Update contact information in relevant pages
+- Modify content while maintaining the Buffalo aesthetic
+- Test all forms (currently show success messages but don't send real emails)
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country J - Coming Soon | Born in Ann Arbor, Raised in Buffalo</title>
-    <meta name="description" content="Country J isn't just another name in country music — he's a self-producing powerhouse born in Ann Arbor, raised in Buffalo. Official site coming soon.">
-    <meta name="keywords" content="Country J, country music, Buffalo, New York, Ann Arbor, self-producing, country artist, coming soon, Justin">
+    <title>Country J - Authentic Country Music from Buffalo, New York | Official Website</title>
+    <meta name="description" content="Experience the raw power of Country J, Buffalo's rising star. Listen to latest releases, catch live shows, and feel the authentic country music that hits home.">
+    <meta name="keywords" content="Country J, country music, Buffalo, New York, country artist, live music, country songs, original new and unique">
     <meta name="author" content="Country J">
 
-    <!-- Open Graph -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://countryjmusic.com/">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://officialcountryj.com/">
-    <meta property="og:title" content="Country J - Coming Soon">
-    <meta property="og:description" content="Country J — a self-producing powerhouse born in Ann Arbor, raised in Buffalo. Son of a preacher. Midwest heart meets Northeast hustle. Official site coming soon.">
-    <meta property="og:image" content="https://officialcountryj.com/assets/img/og-image.jpg">
+    <meta property="og:url" content="https://countryjmusic.com/">
+    <meta property="og:title" content="Country J - Authentic Country Music from Buffalo, New York">
+    <meta property="og:description" content="Experience the raw power of Country J, Buffalo's rising star. Listen to latest releases, catch live shows, and feel the authentic country music that hits home.">
+    <meta property="og:image" content="https://countryjmusic.com/assets/img/og-image.jpg">
+    <meta property="og:site_name" content="Country J Official">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://countryjmusic.com/">
+    <meta name="twitter:title" content="Country J - Authentic Country Music from Buffalo, New York">
+    <meta name="twitter:description" content="Experience the raw power of Country J, Buffalo's rising star. Listen to latest releases, catch live shows, and feel the authentic country music that hits home.">
+    <meta name="twitter:image" content="https://countryjmusic.com/assets/img/twitter-card.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link href="assets/css/styles.css?v=20260126" rel="stylesheet">
 
-    <style>
-        /* === RESET === */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; width: 100%; overflow-x: hidden; }
-        :root { --alien-cursor: url('assets/img/alien-cursor.svg') 16 16; }
-        body { cursor: var(--alien-cursor), auto; }
-        a, button, .cta-btn, .email-form .btn { cursor: var(--alien-cursor), pointer; }
-        input, textarea, select { cursor: var(--alien-cursor), text; }
-
-        /* === VIDEO BACKGROUND === */
-        #bg-video {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            object-fit: cover;
-            z-index: 0;
-        }
-
-        /* === PAGE CONTENT === */
-        .page-wrap {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
-            text-align: center;
-            color: #f8f8f2;
-            font-family: 'Georgia', 'Times New Roman', serif;
-        }
-
-        /* === LOGO === */
-        .logo-wrap img {
-            max-width: 220px;
-            height: auto;
-            filter: drop-shadow(0 0 15px rgba(212,175,55,0.6));
-            margin-bottom: 1.5rem;
-        }
-
-        /* === TYPOGRAPHY === */
-        h1 {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: #d4af37;
-            text-shadow: 0 0 20px rgba(212,175,55,0.7), 3px 3px 6px rgba(0,0,0,0.6);
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-        h2 {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
-        h2 .accent { color: #ff6b35; }
-        h2 .gold   { color: #d4af37; }
-
-        .tagline {
-            font-size: 1.15rem;
-            color: #d2b48c;
-            max-width: 620px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
-        }
-
-        /* === EMAIL FORM === */
-        .email-heading {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #d4af37;
-            margin-bottom: 1rem;
-        }
-        .email-form { max-width: 480px; margin: 0 auto 2.5rem; }
-        .email-form .form-control {
-            background: rgba(255,255,255,0.1);
-            border: 2px solid #d4af37;
-            border-right: none;
-            border-radius: 25px 0 0 25px;
-            color: #f8f8f2;
-            padding: 0.75rem 1.25rem;
-        }
-        .email-form .form-control::placeholder { color: rgba(248,246,240,0.6); }
-        .email-form .form-control:focus {
-            background: rgba(255,255,255,0.15);
-            border-color: #a29bfe;
-            box-shadow: 0 0 0 .2rem rgba(162,155,254,0.25);
-            color: #f8f8f2;
-        }
-        .email-form .btn {
-            background: linear-gradient(45deg, #d4af37, #fdcb6e);
-            border: 2px solid #d4af37;
-            border-left: none;
-            border-radius: 0 25px 25px 0;
-            color: #0f0f23;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.75rem 1.5rem;
-        }
-        .email-form .btn:hover {
-            box-shadow: 0 4px 15px rgba(212,175,55,0.5);
-        }
-
-        /* === CTA BUTTON === */
-        .cta-btn {
-            display: inline-block;
-            border: 2px solid rgba(255,255,255,0.7);
-            border-radius: 8px;
-            padding: 0.9rem 2.5rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            backdrop-filter: blur(6px);
-            transition: all 0.3s ease;
-            margin-bottom: 2.5rem;
-        }
-        .cta-btn:hover {
-            background: rgba(255,255,255,0.15);
-            color: #fff;
-            border-color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,255,255,0.2);
-        }
-
-        /* === FOOTER TEXT === */
-        .footer-text {
-            font-size: 0.95rem;
-            color: #d2b48c;
-            max-width: 520px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-        .footer-text h5 {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #d4af37;
-            margin-bottom: 0.75rem;
-        }
-        .copyright {
-            font-size: 0.8rem;
-            color: rgba(210,180,140,0.6);
-            margin-top: 1rem;
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            h2 { font-size: 1.4rem; }
-            .tagline { font-size: 1rem; }
-            .logo-wrap img { max-width: 180px; }
-        }
-        @media (max-width: 480px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.2rem; }
-            .logo-wrap img { max-width: 150px; }
-            .cta-btn { padding: 0.75rem 1.5rem; font-size: 1rem; }
-        }
-    </style>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "Country J",
+        "description": "Authentic country music artist from Buffalo, New York delivering raw, heartfelt songs that resonate with the soul of country music.",
+        "genre": ["Country", "Honky Tonk", "Americana"],
+        "foundingDate": "2020",
+        "sameAs": [
+            "https://www.instagram.com/officialcountryj/",
+            "https://www.tiktok.com/@justjusbeatz?_r=1&_t=ZT-93KgvtCmwdK",
+            "https://www.youtube.com/@CountryJWorld/videos",
+            "https://open.spotify.com/artist/7gwIq8Z4ayntYt5nPseSJK?si=ncf05a5ZTRiWX020GOOajA",
+            "https://music.apple.com/us/album/whole-lotta-money-single/1806060093"
+        ],
+        "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Country Music Artist",
+            "occupationLocation": {
+                "@type": "City",
+                "name": "Buffalo",
+                "addressRegion": "NY",
+                "addressCountry": "US"
+            }
+        },
+        "member": {
+            "@type": "Person",
+            "name": "Country J",
+            "jobTitle": "Lead Singer, Songwriter, Guitarist"
+        },
+        "album": [
+            {
+                "@type": "MusicAlbum",
+                "name": "Honky Tonk Heart",
+                "datePublished": "2024",
+                "numTracks": "10"
+            },
+            {
+                "@type": "MusicAlbum",
+                "name": "Dirt Road Dreams",
+                "datePublished": "2023",
+                "numTracks": "12"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-    <!-- VIDEO BACKGROUND — fixed, covers entire viewport -->
-    <video id="bg-video" autoplay muted loop playsinline preload="auto"
-           poster="assets/media/hero-country-j-live.jpg">
-        <source src="assets/media/space3.mp4" type="video/mp4">
-    </video>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Country J Home">
+                Country J
+            </a>
 
-    <!-- ALL PAGE CONTENT -->
-    <div class="page-wrap">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Logo -->
-        <div class="logo-wrap">
-            <img src="assets/media/1000015238.jpg" alt="Country J Logo" width="220" height="220">
-        </div>
-
-        <!-- Heading -->
-        <h1>Coming Soon</h1>
-        <h2><span class="accent">Born in Ann Arbor. Raised in Buffalo.</span><br><span class="gold">Midwest Heart. Northeast Hustle.</span></h2>
-
-        <!-- Tagline -->
-        <p class="tagline">Country J isn't just another name in country music — he's a self-producing powerhouse with authenticity, grit, and undeniable talent. Son of a preacher, storytelling runs through his veins. Get ready to feel every word.</p>
-
-        <!-- Email Signup -->
-        <p class="email-heading">Get Notified When We Launch</p>
-        <form action="https://formsubmit.co/officialcountryj@proton.me" method="POST" class="email-form">
-            <input type="hidden" name="_subject" value="Newsletter Signup - Country J Website">
-            <input type="hidden" name="_next" value="https://officialcountryj.com/?newsletter=success">
-            <input type="text" name="_honey" style="display:none">
-            <div class="input-group">
-                <input type="email" name="email" class="form-control" placeholder="Enter your email address" aria-label="Email address" required>
-                <button class="btn" type="submit"><i class="bi bi-envelope me-2"></i>Notify Me</button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="music.html">Music</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tour.html">Tour</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media.html">Media</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bookings.html">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="press.html">Press</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <a href="bookings.html" class="btn btn-book-now ms-3">Book Country J</a>
             </div>
-        </form>
-
-        <!-- CTA -->
-        <a href="countrystree.html" class="cta-btn"><i class="bi bi-link-45deg me-2"></i>SEE ALL LINKS</a>
-
-        <!-- Footer text -->
-        <div class="footer-text">
-            <h5>Stay Connected</h5>
-            <p>Get the latest updates on new releases and exclusive content by signing up to our email list above and check out the all links to hear the music.</p>
-            <p class="copyright">&copy; 2026 Country J. All rights reserved.</p>
         </div>
+    </nav>
 
-    </div>
+    <!-- Page Divider -->
+    <div class="page-divider"></div>
 
-    <!-- Bootstrap JS -->
+    <!-- Hero Slider Section -->
+    <section class="hero-slider" id="main-content">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Live Performances Slide -->
+                <div class="carousel-item active">
+                    <div class="hero-slide" style="background-image: url('assets/media/hero-country-j-live.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center min-vh-100">
+                                <div class="col-lg-8">
+                                    <h1 class="display-1 fw-bold mb-4">
+                                        Experience Live.<br>
+                                        <span class="text-western-accent">Feel the Energy.</span>
+                                    </h1>
+                                    <p class="lead mb-5 fs-4">
+                                        Catch Country J live on stage - from intimate original, new, and unique venues to major festival performances. Feel the raw energy of authentic country music.
+                                    </p>
+                                    <div class="d-flex flex-column flex-sm-row gap-3">
+                                        <a href="tour.html" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-calendar-event me-2"></i>Upcoming Dates
+                                        </a>
+                                        <a href="bookings.html" class="btn btn-outline-light btn-lg px-5 py-3">
+                                            <i class="bi bi-ticket-perforated me-2"></i>Get Tickets
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music & Albums Slide -->
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: url('assets/media/hero-country-j-music.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center min-vh-100">
+                                <div class="col-lg-8">
+                                    <h1 class="display-1 fw-bold mb-4">
+                                        Raw Country.<br>
+                                        <span class="text-western-accent">Real Heart.</span>
+                                    </h1>
+                                    <p class="lead mb-5 fs-4">
+                                        Buffalo's authentic voice bringing you original, new, and unique anthems that hit home. Stream the latest releases and discover Country J's complete discography.
+                                    </p>
+                                    <div class="d-flex flex-column flex-sm-row gap-3">
+                                        <a href="music.html" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-play-circle-fill me-2"></i>Listen Now
+                                        </a>
+                                        <a href="#latest-release" class="btn btn-outline-light btn-lg px-5 py-3">
+                                            <i class="bi bi-music-note-list me-2"></i>Latest Release
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour & Booking Slide -->
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: url('assets/media/hero-country-j-slider3.png');">
+                        <div class="container">
+                            <div class="row align-items-center min-vh-100">
+                                <div class="col-lg-8">
+                                    <h1 class="display-1 fw-bold mb-4">
+                                        Hit the Road.<br>
+                                        <span class="text-western-accent">Book Country J.</span>
+                                    </h1>
+                                    <p class="lead mb-5 fs-4">
+                                        From private events to major festivals, bring Country J's authentic country sound to your audience. Professional performances for every occasion.
+                                    </p>
+                                    <div class="d-flex flex-column flex-sm-row gap-3">
+                                        <a href="bookings.html#booking-section" class="btn btn-primary btn-lg px-5 py-3">
+                                            <i class="bi bi-envelope-fill me-2"></i>Contact
+                                        </a>
+                                        <a href="countrystree.html" class="btn btn-outline-light btn-lg px-5 py-3">
+                                            <i class="bi bi-link-45deg me-2"></i>ALL Links
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Live slide"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Music slide"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Tour slide"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Release Section -->
+    <section class="section section-dark" id="latest-release">
+        <style>
+            .release-featured-card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 3.5rem 2rem;
+                border-radius: 24px;
+                text-decoration: none;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(255,193,7,0.04));
+                border: 2px solid rgba(212,175,55,0.25);
+            }
+            .release-featured-card .bg-video {
+                position: absolute;
+                top: 50%; left: 50%;
+                min-width: 100%; min-height: 100%;
+                width: auto; height: auto;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+                opacity: 0.9;
+                transition: opacity 0.6s ease;
+                object-fit: cover;
+                pointer-events: none;
+            }
+            .release-featured-card:hover .bg-video {
+                opacity: 1;
+            }
+            .release-featured-card .bg-video-overlay {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: linear-gradient(135deg, rgba(10,15,30,0.35), rgba(20,15,5,0.3));
+                z-index: 0;
+                border-radius: 24px;
+                transition: background 0.4s ease;
+            }
+            .release-featured-card:hover .bg-video-overlay {
+                background: linear-gradient(135deg, rgba(10,15,30,0.2), rgba(20,15,5,0.15));
+            }
+            .release-featured-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(255,215,0,0.1));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                border-radius: 24px;
+                z-index: 1;
+            }
+            .release-featured-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                border-color: rgba(212,175,55,0.7);
+                box-shadow: 0 25px 70px rgba(212,175,55,0.3);
+                text-decoration: none;
+            }
+            .release-featured-card:hover::before {
+                opacity: 1;
+            }
+            .release-featured-card .release-icon {
+                font-size: 5rem;
+                color: var(--western-gold);
+                margin-bottom: 1.5rem;
+                transition: all 0.4s ease;
+                position: relative;
+                z-index: 2;
+                filter: drop-shadow(0 0 10px rgba(212,175,55,0.3));
+            }
+            .release-featured-card:hover .release-icon {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 30px rgba(212,175,55,0.6));
+            }
+            .release-featured-card .release-title {
+                font-size: 2.2rem;
+                font-weight: 800;
+                color: var(--western-gold);
+                position: relative;
+                z-index: 2;
+                margin-bottom: 0.5rem;
+                text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            }
+            .release-featured-card .release-subtitle {
+                font-size: 1.1rem;
+                color: rgba(255,255,255,0.9);
+                position: relative;
+                z-index: 2;
+                margin-bottom: 1.5rem;
+                text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+            }
+            .release-featured-card .release-desc {
+                font-size: 1.05rem;
+                color: rgba(255,255,255,0.8);
+                max-width: 600px;
+                line-height: 1.7;
+                position: relative;
+                z-index: 2;
+                margin-bottom: 2rem;
+                text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+            }
+            .release-featured-card:hover .release-desc {
+                color: rgba(255,255,255,0.9);
+            }
+            .release-featured-card .release-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem 2.5rem;
+                font-size: 1.2rem;
+                font-weight: 700;
+                background: linear-gradient(45deg, var(--western-gold), #ffd700);
+                color: var(--western-text-dark);
+                border-radius: 50px;
+                border: none;
+                box-shadow: 0 4px 25px rgba(212,175,55,0.4);
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 2;
+            }
+            .release-featured-card:hover .release-btn {
+                transform: scale(1.05);
+                box-shadow: 0 8px 35px rgba(212,175,55,0.6);
+            }
+            .release-featured-card .release-arrow {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                font-size: 1.5rem;
+                color: var(--western-gold);
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+                z-index: 2;
+            }
+            .release-featured-card:hover .release-arrow {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            @keyframes goldPulse {
+                0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.15); }
+                50% { box-shadow: 0 0 40px rgba(212,175,55,0.35); }
+            }
+            .release-featured-card:hover {
+                animation: goldPulse 2s ease-in-out infinite;
+            }
+        </style>
+
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Latest Release</h2>
+                <p class="lead text-western-tan">The newest single from Country J — out now</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <a href="https://www.youtube.com/watch?v=VeuwzbTN4wo" class="release-featured-card" target="_blank" rel="noopener">
+                        <video class="bg-video" autoplay muted loop playsinline>
+                            <source src="assets/media/moonman.mov" type="video/quicktime">
+                            <source src="assets/media/moonman.mov" type="video/mp4">
+                        </video>
+                        <div class="bg-video-overlay"></div>
+                        <div class="release-arrow"><i class="bi bi-arrow-right"></i></div>
+                        <div class="release-icon"><i class="bi bi-stars"></i></div>
+                        <div class="release-title">"Intergalactic"</div>
+                        <div class="release-subtitle">The New Single by Country J</div>
+                        <div class="release-desc text-center">
+                            A genre-bending anthem made from scratch — every beat, every lyric, every layer built from the ground up. Country soul meets cosmic energy, Midwest heart meets intergalactic vision. This is Country J at his boldest.
+                        </div>
+                        <div class="release-btn">
+                            <i class="bi bi-play-circle-fill"></i> WATCH NOW ON YOUTUBE
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fan Reviews Carousel -->
+    <section class="section" style="background: linear-gradient(135deg, #1a2a3a 0%, #243447 50%, #1e2f42 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Fan Reviews</h2>
+                <p class="lead text-western-tan">What fans are saying about Country J's music and live shows</p>
+            </div>
+
+            <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card bg-transparent border-0 text-center mx-auto" style="max-width: 600px;">
+                            <div class="card-body">
+                                <blockquote class="blockquote">
+                                    <p class="mb-4 fs-5">"Country J doesn't just sing country music - he lives it. Every song feels like it's ripped from his own experiences. The Bluebird Café show was absolutely magical."</p>
+                                    <footer class="blockquote-footer text-western-accent">Sarah M., Buffalo, NY</footer>
+                                </blockquote>
+                                <div class="text-western-gold mb-3">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card bg-transparent border-0 text-center mx-auto" style="max-width: 600px;">
+                            <div class="card-body">
+                                <blockquote class="blockquote">
+                                    <p class="mb-4 fs-5">"His voice has that perfect mix of gravel and soul that reminds me of the greats. 'Honky Tonk Heart' is an instant classic. Can't wait for the next album!"</p>
+                                    <footer class="blockquote-footer text-western-accent">Mike R., Austin, TX</footer>
+                                </blockquote>
+                                <div class="text-western-gold mb-3">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card bg-transparent border-0 text-center mx-auto" style="max-width: 600px;">
+                            <div class="card-body">
+                                <blockquote class="blockquote">
+                                    <p class="mb-4 fs-5">"From the first guitar strum to the final encore, Country J delivers authentic country that touches your soul. His live energy is unmatched - pure Buffalo magic!"</p>
+                                    <footer class="blockquote-footer text-western-accent">Jennifer L., Denver, CO</footer>
+                                </blockquote>
+                                <div class="text-western-gold mb-3">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First review"></button>
+                    <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Second review"></button>
+                    <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Third review"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Dates Section -->
+    <section class="section" style="background: linear-gradient(135deg, #1e2d40 0%, #2a3d54 50%, #233448 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Dates To Be Announced</h2>
+                <p class="lead text-western-tan">Catch Country J live - from intimate venues to major festivals</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="tour-item">
+                        <div>
+                            <div class="tour-date">TBA</div>
+                            <div class="tour-venue">Florida</div>
+                            <div class="tour-location">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour-item">
+                        <div>
+                            <div class="tour-date">TBA</div>
+                            <div class="tour-venue">New York</div>
+                            <div class="tour-location">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour-item">
+                        <div>
+                            <div class="tour-date">TBA</div>
+                            <div class="tour-venue">Texas</div>
+                            <div class="tour-location">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="bookings.html#booking-section" class="btn btn-primary btn-lg">
+                    <i class="bi bi-envelope-fill me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>About Country J</h5>
+                    <p class="mb-4">
+                        Buffalo-based country artist bringing authentic, original, new, and unique music that tells real stories and touches real hearts.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/officialcountryj/" target="_blank" rel="noopener" aria-label="Follow Country J on Instagram">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@justjusbeatz?_r=1&_t=ZT-93KgvtCmwdK" target="_blank" rel="noopener" aria-label="Follow Country J on TikTok">
+                            <i class="bi bi-tiktok" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@CountryJWorld/videos" target="_blank" rel="noopener" aria-label="Subscribe to Country J on YouTube">
+                            <i class="bi bi-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://open.spotify.com/artist/7gwIq8Z4ayntYt5nPseSJK?si=ncf05a5ZTRiWX020GOOajA" target="_blank" rel="noopener" aria-label="Listen to Country J on Spotify">
+                            <i class="bi bi-spotify" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://music.apple.com/us/album/whole-lotta-money-single/1806060093" target="_blank" rel="noopener" aria-label="Listen to Country J on Apple Music">
+                            <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="music.html">Music</a></li>
+                        <li><a href="tour.html">Tour Dates</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="bookings.html">Bookings</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <h5>Stay Connected</h5>
+                    <p>Get the latest updates on new releases, tour dates, and exclusive content.</p>
+
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email address for newsletter" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+
+                    <!-- Footer credit removed -->
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="copyright text-center">
+                <p class="mb-0">&copy; 2025 Country J. All rights reserved.</p>
+                <p class="mb-0">Designed by edeos powered by R2marketing - 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-    <!-- Success Popup -->
-    <style>
-        .cj-popup-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
-        .cj-popup-backdrop.show{opacity:1;pointer-events:auto}
-        .cj-popup{background:linear-gradient(145deg,#1a1a2e,#16213e);border:2px solid #d4af37;border-radius:16px;padding:2.5rem 2rem 2rem;max-width:420px;width:90%;text-align:center;transform:scale(.85);transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 40px rgba(212,175,55,.35)}
-        .cj-popup-backdrop.show .cj-popup{transform:scale(1)}
-        .cj-popup h2{font-family:'Helvetica Neue',Arial,sans-serif;color:#d4af37;font-size:1.8rem;font-weight:800;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:1px}
-        .cj-popup p{color:#f0e6d3;font-size:1.1rem;line-height:1.6;margin-bottom:1.5rem}
-        .cj-popup button{background:linear-gradient(45deg,#d4af37,#fdcb6e);border:none;border-radius:30px;color:#0f0f23;font-weight:700;font-size:1rem;padding:.65rem 2.5rem;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:box-shadow .2s}
-        .cj-popup button:hover{box-shadow:0 4px 18px rgba(212,175,55,.55)}
-    </style>
-    <div class="cj-popup-backdrop" id="cjPopup">
-        <div class="cj-popup">
-            <h2>Thanks Partner</h2>
-            <p>Your Mail Has Been Delivered.</p>
-            <button id="cjPopupClose">Got It</button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Popup helpers
-            function showPartnerPopup() {
-                var cjPopup = document.getElementById('cjPopup');
-                if (cjPopup) cjPopup.classList.add('show');
-            }
-            var cjPopupClose = document.getElementById('cjPopupClose');
-            var cjPopup = document.getElementById('cjPopup');
-            if (cjPopupClose) {
-                cjPopupClose.addEventListener('click', function() {
-                    if (cjPopup) cjPopup.classList.remove('show');
-                });
-            }
-            if (cjPopup) {
-                cjPopup.addEventListener('click', function(e) {
-                    if (e.target === this) this.classList.remove('show');
-                });
-            }
-
-            // If redirected back after FormSubmit success, show popup
-            var p = new URLSearchParams(window.location.search);
-            if (p.get('newsletter') === 'success') {
-                showPartnerPopup();
-                history.replaceState({}, '', window.location.pathname);
-            }
-
-            // GHL Webhook — fire-and-forget contact to GoHighLevel
-            var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/BGm5WYULqMrpuZ71ONr1/webhook-trigger/b5dbcc1e-1db5-4a7c-9657-09972a883ceb';
-            function sendToGHL(data) {
-                fetch(GHL_WEBHOOK, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                    mode: 'no-cors'
-                }).catch(function(){});
-            }
-
-            // Also intercept the form submit to show popup without redirect
-            var emailForm = document.querySelector('.email-form');
-            if (emailForm) {
-                emailForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    var form = this;
-                    var email = form.querySelector('input[type="email"]').value.trim();
-                    if (!email) return;
-
-                    // Send to GHL
-                    sendToGHL({ email: email, source: 'Coming Soon Signup', tags: ['coming-soon', 'newsletter', 'website'] });
-
-                    var btn = form.querySelector('button');
-                    var origHTML = btn.innerHTML;
-                    btn.disabled = true;
-                    btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending...';
-
-                    var fd = new FormData(form);
-                    fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} })
-                    .then(function(){ showPartnerPopup(); form.reset(); btn.disabled=false; btn.innerHTML=origHTML; })
-                    .catch(function(){ showPartnerPopup(); form.reset(); btn.disabled=false; btn.innerHTML=origHTML; });
-                });
-            }
-
-            // Pause video when tab is hidden
-            var v = document.getElementById('bg-video');
-            if (v) {
-                document.addEventListener('visibilitychange', function() { document.hidden ? v.pause() : v.play(); });
-            }
-
-            // "Email Us It's Fun" scroll popup — shows once when user scrolls near bottom
-            var emailFunPopup = document.getElementById('emailFunPopup');
-            var emailFunClose = document.getElementById('emailFunClose');
-            var emailFunGo = document.getElementById('emailFunGo');
-            var emailPopupShown = sessionStorage.getItem('emailPopupShown');
-
-            function showEmailFunPopup() {
-                if (!emailFunPopup || emailPopupShown) return;
-                emailFunPopup.classList.add('show');
-                emailPopupShown = true;
-                sessionStorage.setItem('emailPopupShown', 'true');
-            }
-
-            window.addEventListener('scroll', function() {
-                if (emailPopupShown) return;
-                var scrollPos = window.innerHeight + window.scrollY;
-                var threshold = document.body.offsetHeight - 150;
-                if (scrollPos >= threshold) {
-                    showEmailFunPopup();
-                }
-            });
-            // Also trigger if page is short and user is already at the bottom on load
-            setTimeout(function() {
-                if (emailPopupShown) return;
-                var scrollPos = window.innerHeight + window.scrollY;
-                if (scrollPos >= document.body.offsetHeight - 150) {
-                    showEmailFunPopup();
-                }
-            }, 4000);
-
-            if (emailFunClose) {
-                emailFunClose.addEventListener('click', function() {
-                    if (emailFunPopup) emailFunPopup.classList.remove('show');
-                });
-            }
-            if (emailFunPopup) {
-                emailFunPopup.addEventListener('click', function(e) {
-                    if (e.target === this) this.classList.remove('show');
-                });
-            }
-            if (emailFunGo && emailForm) {
-                emailFunGo.addEventListener('click', function() {
-                    if (emailFunPopup) emailFunPopup.classList.remove('show');
-                    emailForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    var emailInput = emailForm.querySelector('input[type="email"]');
-                    if (emailInput) emailInput.focus();
-                });
-            }
-        });
-    </script>
-
-    <!-- Email Us It's Fun Popup -->
-    <style>
-        .email-fun-backdrop {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 99998;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        .email-fun-backdrop.show { opacity: 1; pointer-events: auto; }
-        .email-fun-box {
-            background: linear-gradient(145deg, #1a1a2e, #16213e);
-            border: 2px solid #d4af37;
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            max-width: 420px; width: 90%;
-            text-align: center;
-            transform: scale(0.85) translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 0 50px rgba(212,175,55,0.35);
-            position: relative;
-        }
-        .email-fun-backdrop.show .email-fun-box { transform: scale(1) translateY(0); }
-        .email-fun-box .fun-icon {
-            font-size: 3rem; color: #d4af37;
-            margin-bottom: 0.75rem;
-            filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
-        }
-        .email-fun-box h2 {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            color: #d4af37; font-size: 1.8rem; font-weight: 800;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .email-fun-box p {
-            color: #f0e6d3; font-size: 1.05rem;
-            line-height: 1.6; margin-bottom: 1.5rem;
-        }
-        .email-fun-box .fun-btn {
-            background: linear-gradient(45deg, #d4af37, #fdcb6e);
-            border: none; border-radius: 50px;
-            color: #0f0f23; font-weight: 700;
-            font-size: 1.1rem; padding: 0.85rem 2.5rem;
-            cursor: pointer; text-transform: uppercase;
-            letter-spacing: 1px; transition: all 0.3s ease;
-        }
-        .email-fun-box .fun-btn:hover {
-            box-shadow: 0 4px 20px rgba(212,175,55,0.55);
-            transform: scale(1.03);
-        }
-        .email-fun-box .fun-close {
-            position: absolute; top: 0.8rem; right: 1rem;
-            background: none; border: none;
-            color: rgba(210,180,140,0.6); font-size: 1.5rem;
-            cursor: pointer; transition: color 0.2s;
-        }
-        .email-fun-box .fun-close:hover { color: #d4af37; }
-    </style>
-
-    <div class="email-fun-backdrop" id="emailFunPopup">
-        <div class="email-fun-box">
-            <button class="fun-close" id="emailFunClose">&times;</button>
-            <div class="fun-icon"><i class="bi bi-envelope-heart-fill"></i></div>
-            <h2>Email Us</h2>
-            <p>It's fun — stay in the loop on new music, shows, and exclusive drops. Be the first to know.</p>
-            <button class="fun-btn" id="emailFunGo"><i class="bi bi-arrow-up-circle-fill me-2"></i>Let's Go</button>
-        </div>
-    </div>
-
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js?v=20260126"></script>
 </body>
 </html>
